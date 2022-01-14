@@ -8,15 +8,12 @@ to use for linear regression.}
 XY_differences(games)
 }
 \arguments{
-\item{games}{}
+\item{games}{A data frame with columns for Team, Score, Year, and Week produced by scrape_games.  Last 3 columns must be numeric.}
 }
 \value{
-a list
+A list with 6 elements
 }
 \description{
 From a collection of game scores, create a design matrix X and a vector of differences Y_diff
 to use for linear regression.
-}
-\examples{
-result <- XY_differences(sample)
 }

@@ -4,7 +4,7 @@
 #' @param wk_start The first week number of games being scraped
 #' @param wk_stop The final week number of games being scraped
 #'
-#' @return
+#' @return A data frame with columns Team, Score, Year, Week
 #' @export
 #' @import dplyr
 #'
@@ -108,9 +108,10 @@ scrape_games <- function(ssn = 2021, wk_start = 1, wk_stop){
   }
   scores <- as.data.frame(scores)
   names(scores) <- c("Team", "Score", "Year", "Week")
+  scores$Score <- as.numeric(scores$Score)
+  scores$Year <- as.numeric(scores$Year)
+  scores$Week <- as.numeric(scores$Week)
   scores <- scores[!is.na(scores$Score),]
   return(scores)
 }
 
-G <- scrape_games(ssn = 2021, wk_stop = 18)
-tail(G)

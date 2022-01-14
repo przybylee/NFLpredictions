@@ -14,7 +14,7 @@ scrape_games(ssn = 2021, wk_start = 1, wk_stop)
 \item{wk_stop}{The final week number of games being scraped}
 }
 \value{
-
+A data frame with columns Team, Score, Year, Week
 }
 \description{
 scrape_games

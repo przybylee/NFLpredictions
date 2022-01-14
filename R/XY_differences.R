@@ -1,13 +1,12 @@
 #' From a collection of game scores, create a design matrix X and a vector of differences Y_diff
 #' to use for linear regression.
 #'
-#' @param games
+#' @param games A data frame with columns for Team, Score, Year, and Week produced by scrape_games.  Last 3 columns must be numeric.
 #'
-#' @return a list
+#' @return A list with 6 elements
 #' @export
 #'
 #' @examples
-#' result <- XY_differences(sample)
 XY_differences <- function(games){
   N <- length(games$Score)
   M <- length(unique(games$Team))
