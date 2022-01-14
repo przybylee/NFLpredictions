@@ -13,3 +13,5 @@ Imports:
     dplyr,
     readr,
     rvest
+URL: https://github.com/przybylee/NFLpredictions
+BugReports: https://github.com/przybylee/NFLpredictions/issues
