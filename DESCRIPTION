@@ -1,5 +1,5 @@
 Package: NFLpredictions
-Title: What the Package Does (One Line, Title Case)
+Title: A package for predicting the outcomes of NFL games
 Version: 0.0.0.9000
 Authors@R: 
     person("Lee", "Przybylski", , "przybylskily@gmail.com", role = c("aut", "cre"),
