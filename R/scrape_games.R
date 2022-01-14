@@ -1,8 +1,3 @@
-library(rvest)
-library(dplyr)
-library(readr)
-
-
 #' scrape_games
 #'
 #' @param ssn The starting year of the season from where we are scraping games
