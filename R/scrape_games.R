@@ -1,4 +1,26 @@
-scrape_games <- function(ssn = 2021, wk_st = 1, wk_stop){
+library(rvest)
+library(dplyr)
+library(readr)
+
+
+#' scrape_games
+#'
+#' @param ssn The starting year of the season from where we are scraping games
+#' @param wk_start The first week number of games being scraped
+#' @param wk_stop The final week number of games being scraped
+#'
+#' @return
+#' @export
+#' @import dplyr
+#'
+#' @examples
+#' G <- scrape_games(ssn = 2017, wk_stop = 17)
+#' tail(G)
+scrape_games <- function(ssn = 2021, wk_start = 1, wk_stop){
+  #Define a few variables
+  #Where we scrape from:
+  nfl_base <- "https://www.pro-football-reference.com/"
+
   #teams involved from 2010 onward; we look for these specific strings
   nfl_teams <- c("Green Bay Packers",
                  "Chicago Bears",
@@ -40,14 +62,11 @@ scrape_games <- function(ssn = 2021, wk_st = 1, wk_stop){
   #total number of teams
   l <- nchar(nfl_teams)
 
-  #Where we scrape from:
-  nfl_base <- "https://www.pro-football-reference.com/"
   date_list <- c()
-  #year_step <- 2009
   score_step <- 3
   scores <- c()
-  for (year in 2021:2021) {
-    for (week in 1:5) {
+  for (year in ssn) {
+    for (week in wk_start:wk_stop) {
       #manipulate base string to get a specific week in a specific season
       date <- paste0("years/", year, "/week_", week, ".htm")
       paste0(nfl_base, date) -> url
@@ -58,7 +77,7 @@ scrape_games <- function(ssn = 2021, wk_st = 1, wk_stop){
         rvest::html_text()
 
       #getting the teams that played during the current week
-      hold <- dplyr::sapply(nfl_teams, regexpr, game)
+      hold <- sapply(nfl_teams, regexpr, game)
       played <- hold[hold > 0]
       ord <- order(played)
 
@@ -97,3 +116,6 @@ scrape_games <- function(ssn = 2021, wk_st = 1, wk_stop){
   scores <- scores[!is.na(scores$Score),]
   return(scores)
 }
+
+G <- scrape_games(ssn = 2021, wk_stop = 18)
+tail(G)
