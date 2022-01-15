@@ -11,7 +11,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports: 
     dplyr,
+    MASS,
     readr,
-    rvest
+    rvest,
+    stats
 URL: https://github.com/przybylee/NFLpredictions
 BugReports: https://github.com/przybylee/NFLpredictions/issues
