@@ -26,12 +26,12 @@ point_spread_ols <- function(data, home, away, home_effect = TRUE, a = 0.05, ver
   cont[colnames(X) == AwayTm] <- -1
   #Put contrast vector c into confint to estimate HomeTm score - AwayTm score
   est <- conf_int_ols(X, y = Y, cont = cont, d = 0, a = a)
-  spread <- conf_int_ols$est[1]
+  spread <- round(est$est[1], digits = 1)
   if (spread >=0){
-    print(paste(HomeTm, "beats", AwayTm, "by", spread))
+    print(paste(HomeTm, "beat", AwayTm, "by", spread))
   }
   else {
-    print(paste(AwayTm, "beats", HomeTm, "by", abs(spread)))
+    print(paste(AwayTm, "beat", HomeTm, "by", abs(spread)))
   }
   return(est)
 }
