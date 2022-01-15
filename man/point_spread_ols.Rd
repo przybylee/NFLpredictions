@@ -4,7 +4,14 @@
 \alias{point_spread_ols}
 \title{Estimate the point spread from a season design object}
 \usage{
-point_spread_ols(data, home, away, home_effect = TRUE, a = 0.05)
+point_spread_ols(
+  data,
+  home,
+  away,
+  home_effect = TRUE,
+  a = 0.05,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{data}{A list containing a design matrix, score differences, and teams,
@@ -17,6 +24,8 @@ as produced by the XY_differences function}
 \item{home_effect}{Logical, TRUE if we want to estimate with home field advantage}
 
 \item{a}{The level of the confidence interval}
+
+\item{verbose}{Logical, TRUE if we want to print who the winning team will be}
 }
 \value{
 A data frame describing the estimated point spread and the limits of a

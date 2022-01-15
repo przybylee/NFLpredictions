@@ -6,13 +6,14 @@
 #' @param away The name of the away team, may be a substring
 #' @param home_effect Logical, TRUE if we want to estimate with home field advantage
 #' @param a The level of the confidence interval
+#' @param verbose Logical, TRUE if we want to print who the winning team will be
 #'
 #' @return A data frame describing the estimated point spread and the limits of a
 #' confidence level
 #' @export
 #'
 #' @examples
-point_spread_ols <- function(data, home, away, home_effect = TRUE, a = 0.05){
+point_spread_ols <- function(data, home, away, home_effect = TRUE, a = 0.05, verbose = TRUE){
   teams <- data$teams
   X <- data$X
   Y <- data$Y_diff
@@ -24,5 +25,13 @@ point_spread_ols <- function(data, home, away, home_effect = TRUE, a = 0.05){
   cont[colnames(X) == HomeTm] <- 1
   cont[colnames(X) == AwayTm] <- -1
   #Put contrast vector c into confint to estimate HomeTm score - AwayTm score
-  conf_int_ols(X, y = Y, cont = cont, d = 0, a = a)
+  est <- conf_int_ols(X, y = Y, cont = cont, d = 0, a = a)
+  spread <- conf_int_ols$est[1]
+  if (spread >=0){
+    print(paste(HomeTm, "beats", AwayTm, "by", spread))
+  }
+  else {
+    print(paste(AwayTm, "beats", HomeTm, "by", abs(spread)))
+  }
+  return(est)
 }
