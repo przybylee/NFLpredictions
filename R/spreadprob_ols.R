@@ -1,3 +1,17 @@
+#' Predict the probability of each team beating the spread using ols estimates
+#'
+#' @param data List of season data as produced by XY_differences, contains
+#' design matrix X, scores Y_diff, and a list of teams
+#' @param home Name of the home team, could be a substring
+#' @param away Name of the away team, could be a substring
+#' @param hspread Point spread for the home team
+#' @param aspread Point spread for the away team
+#' @param home_effect Logical, indicates if we consider home field advantage
+#'
+#' @return A dataframe indicating the probabilities of each team beating the spread
+#' @export
+#'
+#' @examples
 spreadprob_ols <- function(data, home, away, hspread, aspread = NULL,
                            home_effect = TRUE){
   X <- data$X
