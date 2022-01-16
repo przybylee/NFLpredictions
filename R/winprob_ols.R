@@ -1,3 +1,16 @@
+#' Calculate the win probability using OLS estimators
+#'
+#' @param data List of season data as produced by XY_differences, contains
+#' design matrix X, scores Y_diff, and a list of teams
+#' @param home Name of the home team, could be a substring
+#' @param away Name of the away team, could be a substring
+#' @param home_effect Logical, indicates if there is home field advantage
+#' @param verbose Logical, indicates if we want output to read win probabilities
+#'
+#' @return A data frame containing the teams and their win probabilities
+#' @export
+#'
+#' @examples
 winprob_ols <- function(data, home, away, home_effect = TRUE, verbose = TRUE){
   X <- data$X
   Y <- data$Y_dif
