@@ -6,7 +6,7 @@
 #'
 #' @return A data frame with columns Team, Score, Year, Week
 #' @export
-#' @import dplyr
+#' @importFrom magrittr %>%
 #'
 #' @examples
 #' G <- scrape_games(ssn = 2017, wk_stop = 17)

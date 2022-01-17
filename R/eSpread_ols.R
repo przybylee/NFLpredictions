@@ -7,8 +7,12 @@
 #' @param hspread Point spread for the home team
 #' @param aspread Point spread for the away team
 #' @param home_effect Logical, indicates if we consider home field advantage
+#' @param wager Amount of money being wagered in dollars
+#' @param hBL The betting line for the home team against the spread, American
+#' @param aBL The betting line for the away team against the spread, American
 #'
-#' @return A dataframe indicating the probabilities of each team beating the spread
+#' @return A dataframe indicating the expected value of wagering on each team to
+#' beat the spread.
 #' @export
 #' @importFrom stats pnorm
 #' @importFrom stats anova
@@ -17,9 +21,9 @@
 #' @examples
 #' G <- regssn2021
 #' List <- XY_differences(G)
-#' spreadprob_ols(List, "Patriots", "Bills", -5)
-spreadprob_ols <- function(data, home, away, hspread, aspread = NULL,
-                           home_effect = TRUE){
+#' eSpread_ols(List, "Patriots", "Bills", hspread = -5, hBL = -115, aBL = -105)
+eSpread_ols <- function(data, home, away, hspread, aspread = NULL,
+                        home_effect = TRUE, wager = 1, hBL = -110, aBL = -110){
   X <- data$X
   Y <- data$Y_dif
   teams <- data$teams
@@ -40,11 +44,15 @@ spreadprob_ols <- function(data, home, away, hspread, aspread = NULL,
   sigma <- sqrt(sigsq)
   #Compute probs that each team beats the spread
   if(is.null(aspread)){aspread <- -hspread}
-  AwayProb <- pnorm(aspread,mean = mu, sd = sigma)
-  HomeProb <- pnorm(-hspread,mean = mu, sd = sigma, lower.tail = FALSE)
-  #print(paste("The estimated win probability for the ", AwayTm, "at",
-   #           HomeTm, "is", round(AwayProb,3), sep = " " ))
+  AwayProb <- pnorm(aspread, mean = mu, sd = sigma)
+  HomeProb <- pnorm(-hspread, mean = mu, sd = sigma, lower.tail = FALSE)
   probs <- data.frame(h = HomeTm, a = AwayTm, h_spread = mu,
                       h_prob = HomeProb, a_prob = AwayProb, method = "normal")
-  return(probs)
+  aOdds <- american_to_odds(aBL)
+  hOdds <- american_to_odds(hBL)
+  eAway <- wager*aOdds*AwayProb - wager*HomeProb
+  eHome <- wager*hOdds*HomeProb - wager*AwayProb
+  EXP <- data.frame(h = HomeTm, a = AwayTm, eHome = eHome, eAway = eAway,
+                    method = "normal")
+  return(EXP)
 }

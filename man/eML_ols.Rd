@@ -9,8 +9,8 @@ eML_ols(
   home,
   away,
   wager = 1,
-  hML = -110,
-  aML = -110,
+  hBL = -110,
+  aBL = -110,
   home_effect = TRUE
 )
 }
@@ -24,9 +24,9 @@ design matrix X, scores Y_diff, and a list of teams}
 
 \item{wager}{Amount of money being wagered in dollars}
 
-\item{hML}{The home team's moneyline given as American}
+\item{hBL}{The home team's moneyline given as American}
 
-\item{aML}{The away team's moneyline given as American}
+\item{aBL}{The away team's moneyline given as American}
 
 \item{home_effect}{Logical, indicates if there is home field advantage}
 }
@@ -40,5 +40,5 @@ Calculate the expected value for wagering on each team
 \examples{
 G <- regssn2021
 data <- XY_differences(G)
-eML_ols(data, "Bills", "Patriots", wager = 20, hML = -160, aML = 180)
+eML_ols(data, "Bills", "Patriots", wager = 20, hBL = -160, aBL = 180)
 }

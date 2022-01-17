@@ -9,6 +9,9 @@
 #'
 #' @return A data frame containing the teams and their win probabilities
 #' @export
+#' @importFrom stats pnorm
+#' @importFrom stats anova
+#' @importFrom stats lm
 #'
 #' @examples
 #' G <- regssn2021
@@ -29,7 +32,7 @@ winprob_ols <- function(data, home, away, home_effect = TRUE, verbose = TRUE){
   reg <- lm(Y ~ X+0)
   cont <- as.matrix(cont)
   X.X <- t(X)%*%X
-  df <- nrow(X) - anova(reg)[1,1]
+  df <- nrow(X) - stats::anova(reg)[1,1]
   mu <- t(cont)%*%MASS::ginv(X.X)%*%t(X)%*%Y
   sigsq <- anova(reg)[2,3]
   sigma <- sqrt(sigsq)

@@ -5,19 +5,22 @@
 #' @param home Name of the home team, could be a substring
 #' @param away Name of the away team, could be a substring
 #' @param wager Amount of money being wagered in dollars
-#' @param hML The home team's moneyline given as American
-#' @param aML The away team's moneyline given as American
+#' @param hBL The home team's moneyline given as American
+#' @param aBL The away team's moneyline given as American
 #' @param home_effect Logical, indicates if there is home field advantage
 #'
 #' @return A data frame containing the names of the two teams and the expected
 #' values for wagering on either moneyline.
 #' @export
+#' @importFrom stats pnorm
+#' @importFrom stats anova
+#' @importFrom stats lm
 #'
 #' @examples
 #' G <- regssn2021
 #' data <- XY_differences(G)
-#' eML_ols(data, "Bills", "Patriots", wager = 20, hML = -160, aML = 180)
-eML_ols <- function(data, home, away, wager = 1, hML = -110, aML = -110,
+#' eML_ols(data, "Bills", "Patriots", wager = 20, hBL = -160, aBL = 180)
+eML_ols <- function(data, home, away, wager = 1, hBL = -110, aBL = -110,
                            home_effect = TRUE){
   X <- data$X
   Y <- data$Y_dif
@@ -37,12 +40,11 @@ eML_ols <- function(data, home, away, wager = 1, hML = -110, aML = -110,
   mu <- t(cont)%*%MASS::ginv(X.X)%*%t(X)%*%Y
   sigsq <- anova(reg)[2,3]
   sigma <- sqrt(sigsq)
-  #Compute probs that each team beats the spread
-  if(is.null(aspread)){aspread <- -hspread}
+  #Compute probs for each team winning
   AwayProb <- pnorm(0, mean = mu, sd = sigma)
   HomeProb <- pnorm(0, mean = mu, sd = sigma, lower.tail = FALSE)
-  aOdds <- american_to_odds(aML)
-  hOdds <- american_to_odds(hML)
+  aOdds <- american_to_odds(aBL)
+  hOdds <- american_to_odds(hBL)
   eAway <- wager*aOdds*AwayProb - wager*HomeProb
   eHome <- wager*hOdds*HomeProb - wager*AwayProb
   EXP <- data.frame(h = HomeTm, a = AwayTm, eHome = eHome, eAway = eAway,
