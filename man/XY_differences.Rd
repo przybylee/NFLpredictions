@@ -17,3 +17,8 @@ A list with 6 elements
 From a collection of game scores, create a design matrix X and a vector of differences Y_diff
 to use for linear regression.
 }
+\examples{
+G <- regssn2021
+List <- XY_differences(G)
+List$teams
+}

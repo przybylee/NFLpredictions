@@ -24,3 +24,8 @@ A data frame containing the teams and their win probabilities
 \description{
 Calculate the win probability using OLS estimators
 }
+\examples{
+G <- regssn2021
+List <- XY_differences(G)
+winprob_ols(List, "Patriots", "Bills")
+}

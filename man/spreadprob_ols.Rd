@@ -26,3 +26,8 @@ A dataframe indicating the probabilities of each team beating the spread
 \description{
 Predict the probability of each team beating the spread using ols estimates
 }
+\examples{
+G <- regssn2021
+List <- XY_differences(G)
+spreadprob_ols(List, "Patriots", "Bills", -5)
+}

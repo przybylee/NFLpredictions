@@ -7,6 +7,9 @@
 #' @export
 #'
 #' @examples
+#' G <- regssn2021
+#' List <- XY_differences(G)
+#' List$teams
 XY_differences <- function(games){
   N <- length(games$Score)
   M <- length(unique(games$Team))

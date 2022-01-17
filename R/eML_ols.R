@@ -1,21 +1,23 @@
-#' Predict the probability of each team beating the spread using ols estimates
+#' Calculate the expected value for wagering on each team
 #'
 #' @param data List of season data as produced by XY_differences, contains
 #' design matrix X, scores Y_diff, and a list of teams
 #' @param home Name of the home team, could be a substring
 #' @param away Name of the away team, could be a substring
-#' @param hspread Point spread for the home team
-#' @param aspread Point spread for the away team
-#' @param home_effect Logical, indicates if we consider home field advantage
+#' @param wager Amount of money being wagered in dollars
+#' @param hML The home team's moneyline given as American
+#' @param aML The away team's moneyline given as American
+#' @param home_effect Logical, indicates if there is home field advantage
 #'
-#' @return A dataframe indicating the probabilities of each team beating the spread
+#' @return A data frame containing the names of the two teams and the expected
+#' values for wagering on either moneyline.
 #' @export
 #'
 #' @examples
 #' G <- regssn2021
-#' List <- XY_differences(G)
-#' spreadprob_ols(List, "Patriots", "Bills", -5)
-spreadprob_ols <- function(data, home, away, hspread, aspread = NULL,
+#' data <- XY_differences(G)
+#' eML_ols(data, "Bills", "Patriots", wager = 20, hML = -160, aML = 180)
+eML_ols <- function(data, home, away, wager = 1, hML = -110, aML = -110,
                            home_effect = TRUE){
   X <- data$X
   Y <- data$Y_dif
@@ -37,11 +39,13 @@ spreadprob_ols <- function(data, home, away, hspread, aspread = NULL,
   sigma <- sqrt(sigsq)
   #Compute probs that each team beats the spread
   if(is.null(aspread)){aspread <- -hspread}
-  AwayProb <- pnorm(aspread,mean = mu, sd = sigma)
-  HomeProb <- pnorm(-hspread,mean = mu, sd = sigma, lower.tail = FALSE)
-  #print(paste("The estimated win probability for the ", AwayTm, "at",
-   #           HomeTm, "is", round(AwayProb,3), sep = " " ))
-  probs <- data.frame(h = HomeTm, a = AwayTm, h_spread = mu,
-                      h_prob = HomeProb, a_prob = AwayProb, method = "normal")
-  return(probs)
+  AwayProb <- pnorm(0, mean = mu, sd = sigma)
+  HomeProb <- pnorm(0, mean = mu, sd = sigma, lower.tail = FALSE)
+  aOdds <- american_to_odds(aML)
+  hOdds <- american_to_odds(hML)
+  eAway <- wager*aOdds*AwayProb - wager*HomeProb
+  eHome <- wager*hOdds*HomeProb - wager*AwayProb
+  EXP <- data.frame(h = HomeTm, a = AwayTm, eHome = eHome, eAway = eAway,
+                    method = "normal")
+  return(EXP)
 }

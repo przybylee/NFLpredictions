@@ -24,3 +24,12 @@ the confidence interval
 \description{
 Obtain a confidence interval using OLS
 }
+\examples{
+G <- regssn2021
+List <- XY_differences(G)
+X <- ListX
+y <- List$Y_diff
+d <- length(List$teams)
+cont <- c(0, rep(0,d))
+conf_int_ols(X, y, cont, d = 0, a = 0.1)
+}

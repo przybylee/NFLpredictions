@@ -13,6 +13,9 @@
 #' @export
 #'
 #' @examples
+#' G <- regssn2021
+#' List <- XY_differences(G)
+#' point_spread_ols(List, "Patriots", "Bills")
 point_spread_ols <- function(data, home, away, home_effect = TRUE, a = 0.05, verbose = TRUE){
   teams <- data$teams
   X <- data$X

@@ -11,7 +11,14 @@
 #' @export
 #'
 #' @examples
-conf_int_ols=function(X,y,cont,d=0,a=0.05){
+#' G <- regssn2021
+#' List <- XY_differences(G)
+#' X <- ListX
+#' y <- List$Y_diff
+#' d <- length(List$teams)
+#' cont <- c(0, rep(0,d))
+#' conf_int_ols(X, y, cont, d = 0, a = 0.1)
+conf_int_ols <- function(X,y,cont,d=0,a=0.05){
   reg <- stats::lm(y ~ X+0)
   cont = as.matrix(cont)
   X.X <- t(X)%*%X

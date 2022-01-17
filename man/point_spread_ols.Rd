@@ -34,3 +34,8 @@ confidence level
 \description{
 Estimate the point spread from a season design object
 }
+\examples{
+G <- regssn2021
+List <- XY_differences(G)
+point_spread_ols(List, "Patriots", "Bills")
+}

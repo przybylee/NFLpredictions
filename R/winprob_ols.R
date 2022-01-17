@@ -11,6 +11,9 @@
 #' @export
 #'
 #' @examples
+#' G <- regssn2021
+#' List <- XY_differences(G)
+#' winprob_ols(List, "Patriots", "Bills")
 winprob_ols <- function(data, home, away, home_effect = TRUE, verbose = TRUE){
   X <- data$X
   Y <- data$Y_dif
