@@ -81,11 +81,10 @@ names(data)
 #> [1] "X"      "Y_diff" "teams"  "games"  "start"  "end"
 ```
 
-The object `data` is a list that contains *X* and $\\matbf{y}$. There is
-also a list of the team names appearing in the original data set.Now
-that the data has been sorted, we can analyze the game of interest. For
-starters, we use `point_spread_ols` to estimate the Rams’ margin of
-victory.
+The object `data` is a list that contains *X* and **y**. There is also a
+list of the team names appearing in the original data set.Now that the
+data has been sorted, we can analyze the game of interest. For starters,
+we use `point_spread_ols` to estimate the Rams’ margin of victory.
 
 ``` r
 point_spread_ols(data, "Rams", "Cardinals", a = 0.05)
