@@ -35,7 +35,7 @@ Suppose we are considering placing a wager on a first round playoff game between
 
 ![Alt text](README_images/SampleBettingLine.PNG)
 
-First we load the library and collect some data.  We will scrape scores from all the games from the 2021 regular season from [Pro-Football Reference](pro-football-reference.com).
+First we load the library and collect some data.  We will scrape scores from all the games from the 2021 regular season from [Pro-Football Reference](https://www.pro-football-reference.com/).
 
 ```{r example}
 library(NFLpredictions)
@@ -45,7 +45,9 @@ tail(G)
 
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+Next, we want to use linear regression to estimate the relative strengths of each team.  We can use a simple model, where $Y_j$ is the margin of victory for the home team in game $j$.  Then we have
+$$Y_j = h_{(j)} - a_{(j)} + \varepsilon_j,$$
+where $\varepsilon_j$ is observed as the residuals in our model.
 
 ```{r cars}
 summary(cars)

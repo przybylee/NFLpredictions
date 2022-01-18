@@ -28,7 +28,7 @@ between the Cardinals and the Rams.
 
 First we load the library and collect some data. We will scrape scores
 from all the games from the 2021 regular season from [Pro-Football
-Reference](pro-football-reference.com).
+Reference](https://www.pro-football-reference.com/).
 
 ``` r
 library(NFLpredictions)
@@ -51,8 +51,12 @@ tail(G)
 #> new.543     Los Angeles Rams    24 2021   18
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+Next, we want to use linear regression to estimate the relative
+strengths of each team. We can use a simple model, where
+*Y*<sub>*j*</sub> is the margin of victory for the home team in game
+*j*. Then we have
+*Y*<sub>*j*</sub> = *h*<sub>(*j*)</sub> − *a*<sub>(*j*)</sub> + *ε*<sub>*j*</sub>,
+where *ε*<sub>*j*</sub> is observed as the residuals in our model.
 
 ``` r
 summary(cars)
