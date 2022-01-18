@@ -46,11 +46,24 @@ tail(G)
 ```
 
 Next, we want to use linear regression to estimate the relative strengths of each team.  We can use a simple model, where $Y_j$ is the margin of victory for the home team in game $j$.  Then we have
-$$Y_j = h_{(j)} - a_{(j)} + \varepsilon_j,$$
-where $\varepsilon_j$ is observed as the residuals in our model.
 
-```{r cars}
-summary(cars)
+$$
+y_j = \tau_{h_j} - \tau_{a_j} + \eta + \varepsilon_j,
+$$
+
+where $\varepsilon_j$ is observed as the residuals in our model.  The indices $h_j$ and $a_j$ indicate the home and away teams respectively.  The effect of home field advantage is represented by $\eta$.  The matrix equation associated with this is 
+
+$$
+X\pmb{\beta} = \mathbf{y},
+$$
+where 
+$$
+\pmb{\beta} = (\eta,\tau_1,...,\tau_{32})'
+$$
+The design matrix $X$ has a row for each game in the data set, where each row has a 1 in the first column, a 1 in column $h_j$, and a $-1$ in column $a_j$.  We cannot estimate $\pmb{\beta}$ directly, but we can estimate $\eta$ as well as the difference of any two $\tau$'s using ordinary least squares.  This serves as a good predictor for the outcome of a game.  Given a data frame of games resembling `G`, we can produce the appropriate $X$ and $\mathbf{y}$ using the function `XY_differences()`.
+```{r}
+data <- XY_differences(G)
+names(data)
 ```
 
 You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>.

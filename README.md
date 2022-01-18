@@ -55,18 +55,30 @@ Next, we want to use linear regression to estimate the relative
 strengths of each team. We can use a simple model, where
 *Y*<sub>*j*</sub> is the margin of victory for the home team in game
 *j*. Then we have
-*Y*<sub>*j*</sub> = *h*<sub>(*j*)</sub> − *a*<sub>(*j*)</sub> + *ε*<sub>*j*</sub>,
-where *ε*<sub>*j*</sub> is observed as the residuals in our model.
+
+*y*<sub>*j*</sub> = *τ*<sub>*h*<sub>*j*</sub></sub> − *τ*<sub>*a*<sub>*j*</sub></sub> + *η* + *ε*<sub>*j*</sub>,
+
+where *ε*<sub>*j*</sub> is observed as the residuals in our model. The
+indices *h*<sub>*j*</sub> and *a*<sub>*j*</sub> indicate the home and
+away teams respectively. The effect of home field advantage is
+represented by *η*. The matrix equation associated with this is
+
+*X***β** = **y**,
+where
+**β** = (*η*,*τ*<sub>1</sub>,...,*τ*<sub>32</sub>)′
+The design matrix *X* has a row for each game in the data set, where
+each row has a 1 in the first column, a 1 in column *h*<sub>*j*</sub>,
+and a  − 1 in column *a*<sub>*j*</sub>. We cannot estimate **β**
+directly, but we can estimate *η* as well as the difference of any two
+*τ*’s using ordinary least squares. This serves as a good predictor for
+the outcome of a game. Given a data frame of games resembling `G`, we
+can produce the appropriate *X* and **y** using the function
+`XY_differences()`.
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+data <- XY_differences(G)
+names(data)
+#> [1] "X"      "Y_diff" "teams"  "games"  "start"  "end"
 ```
 
 You’ll still need to render `README.Rmd` regularly, to keep `README.md`
