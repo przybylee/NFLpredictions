@@ -81,13 +81,32 @@ names(data)
 #> [1] "X"      "Y_diff" "teams"  "games"  "start"  "end"
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
+The object `data` is a list that contains *X* and $\\matbf{y}$. There is
+also a list of the team names appearing in the original data set.Now
+that the data has been sorted, we can analyze the game of interest. For
+starters, we use `point_spread_ols` to estimate the Rams’ margin of
+victory.
 
-You can also embed plots, for example:
+``` r
+point_spread_ols(data, "Rams", "Cardinals", a = 0.05)
+#> [1] "Los Angeles Rams beat Arizona Cardinals by 1.8"
+#>        est  std.dev     lower    upper
+#> 1 1.844102 4.444196 -6.910509 10.59871
+```
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+Notice that since we set `a = 0.05`, we get the limits of a 95%
+confidence interval for
+*τ*<sub>Rams</sub> − *τ*<sub>Cardinals</sub> + *η*. This is based on the
+*t* statistic when we assume
+$$
+\\varepsilon_j\\overset{\\text{iid}}{\\sim}N(0,\\sigma^2).
+$$
+We can also use use this assumption to get win probabilities.
+
+``` r
+probs <- winprob_ols(data, "Rams", "cardinals")
+#> [1] "The estimated win probability for the  Arizona Cardinals at Los Angeles Rams is 0.445"
+probs
+#>                  h                 a h_spread    h_prob    a_prob method
+#> 1 Los Angeles Rams Arizona Cardinals 1.844102 0.5546997 0.4453003 normal
+```
