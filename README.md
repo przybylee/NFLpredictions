@@ -138,3 +138,8 @@ If left null, the value for `aspread`, the home teams spread is assumed
 to be the opposit of `hspread`. The default values of `hBL` and `aBL`
 are -110, since that is usually the standard betting line for something
 with equal odds after vigorish is applied.
+
+After considering the probabities, betting on the Cardinals moneyline
+seems to have the best payout relative to our estimated probability of
+this actually happening. This is still the least likely wager to pay
+off.
