@@ -35,9 +35,14 @@ Suppose we are considering placing a wager on a first round playoff game between
 
 ![Alt text](README_images/SampleBettingLine.PNG)
 
+First we load the library and collect some data.  We will scrape scores from all the games from the 2021 regular season from [Pro-Football Reference](pro-football-reference.com).
+
 ```{r example}
 library(NFLpredictions)
-## basic example code
+G <- scrape_games(ssn = 2021, wk_start = 1, wk_stop = 18)
+head(G)
+tail(G)
+
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:

@@ -26,9 +26,29 @@ between the Cardinals and the Rams.
 
 ![Alt text](README_images/SampleBettingLine.PNG)
 
+First we load the library and collect some data. We will scrape scores
+from all the games from the 2021 regular season from [Pro-Football
+Reference](pro-football-reference.com).
+
 ``` r
 library(NFLpredictions)
-## basic example code
+G <- scrape_games(ssn = 2021, wk_start = 1, wk_stop = 18)
+head(G)
+#>                       Team Score Year Week
+#> new         Dallas Cowboys    29 2021    1
+#> new.1 Tampa Bay Buccaneers    31 2021    1
+#> new.2  Philadelphia Eagles    32 2021    1
+#> new.3      Atlanta Falcons     6 2021    1
+#> new.4  Pittsburgh Steelers    23 2021    1
+#> new.5        Buffalo Bills    16 2021    1
+tail(G)
+#>                         Team Score Year Week
+#> new.538     Seattle Seahawks    38 2021   18
+#> new.539    Arizona Cardinals    30 2021   18
+#> new.540 Los Angeles Chargers    32 2021   18
+#> new.541    Las Vegas Raiders    35 2021   18
+#> new.542  San Francisco 49ers    27 2021   18
+#> new.543     Los Angeles Rams    24 2021   18
 ```
 
 What is special about using `README.Rmd` instead of just `README.md`?
