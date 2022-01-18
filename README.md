@@ -97,9 +97,7 @@ Notice that since we set `a = 0.05`, we get the limits of a 95%
 confidence interval for
 *τ*<sub>Rams</sub> − *τ*<sub>Cardinals</sub> + *η*. This is based on the
 *t* statistic when we assume
-$$
-\\varepsilon_j\\overset{\\text{iid}}{\\sim}N(0,\\sigma^2).
-$$
+*ε*<sub>*j*</sub> ∼ *N*(0,*σ*<sup>2</sup>).
 We can also use use this assumption to get win probabilities.
 
 ``` r
@@ -109,3 +107,34 @@ probs
 #>                  h                 a h_spread    h_prob    a_prob method
 #> 1 Los Angeles Rams Arizona Cardinals 1.844102 0.5546997 0.4453003 normal
 ```
+
+If we wanted to look at the chances of a team beating the spread, we
+could use \`spreadprob_ols()’.
+
+It is in the interest of the sports book to set the betting lines so
+each wager will have negative expectation, although they also consider
+the amount of risk based on where customers are placing their bets. We
+would like to consider the expected value of each of our wagers. In the
+long run, we could benefit from only placing wagers with positive
+expectation. To see the expected value on wagering on either of the
+moneylines, we use `eML_ols()`.
+
+``` r
+eML_ols(data, "Rams", "Cardinals", wager = 40, hBL = -170, aBL = 150)
+#>                  h                 a     eHome    eAway method
+#> 1 Los Angeles Rams Arizona Cardinals -4.760257 4.530034 normal
+```
+
+We can also consider the expected value of betting on either team to
+beat the spread.
+
+``` r
+eSpread_ols(data, "Rams", "Cardinals", hspread = -3.5, wager = 40)
+#>                  h                 a     eHome    eAway method
+#> 1 Los Angeles Rams Arizona Cardinals -5.571235 1.934871 normal
+```
+
+If left null, the value for `aspread`, the home teams spread is assumed
+to be the opposit of `hspread`. The default values of `hBL` and `aBL`
+are -110, since that is usually the standard betting line for something
+with equal odds after vigorish is applied.

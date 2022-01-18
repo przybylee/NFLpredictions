@@ -72,10 +72,23 @@ point_spread_ols(data, "Rams", "Cardinals", a = 0.05)
 ```
 Notice that since we set `a = 0.05`, we get the limits of a 95% confidence interval for $\tau_{\text{Rams}} - \tau_{\text{Cardinals}}+\eta$.  This is based on the $t$ statistic when we assume 
 $$
-\varepsilon_j\overset{\text{iid}}{\sim}N(0,\sigma^2).
+\varepsilon_j\:{\sim}\:N(0,\sigma^2).
 $$
 We can also use use this assumption to get win probabilities.
 ```{r}
 probs <- winprob_ols(data, "Rams", "cardinals")
 probs
 ```
+If we wanted to look at the chances of a team beating the spread, we could use `spreadprob_ols()'.
+
+It is in the interest of the sports book to set the betting lines so each wager will have negative expectation, although they also consider the amount of risk based on where customers are placing their bets.  We would like to consider the expected value of each of our wagers.  In the long run, we could benefit from only placing wagers with positive expectation.  To see the expected value on wagering on either of the moneylines, we use `eML_ols()`.
+```{r}
+eML_ols(data, "Rams", "Cardinals", wager = 40, hBL = -170, aBL = 150)
+```
+
+We can also consider the expected value of betting on either team to beat the spread.
+```{r}
+eSpread_ols(data, "Rams", "Cardinals", hspread = -3.5, wager = 40)
+```
+If left null, the value for `aspread`, the home teams spread is assumed to be the opposit of `hspread`.  The default values of `hBL` and `aBL` are -110, since that is usually the standard betting line for something with equal odds after vigorish is applied.
+
