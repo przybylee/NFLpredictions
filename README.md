@@ -65,6 +65,7 @@ represented by *η*. The matrix equation associated with this is
 
 *X***β** = **y**,
 where
+
 **β** = (*η*,*τ*<sub>1</sub>,...,*τ*<sub>32</sub>)′
 The design matrix *X* has a row for each game in the data set, where
 each row has a 1 in the first column, a 1 in column *h*<sub>*j*</sub>,
@@ -109,7 +110,7 @@ probs
 ```
 
 If we wanted to look at the chances of a team beating the spread, we
-could use \`spreadprob_ols()’.
+could use `spreadprob_ols()`.
 
 It is in the interest of the sports book to set the betting lines so
 each wager will have negative expectation, although they also consider

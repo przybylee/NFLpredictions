@@ -57,6 +57,7 @@ $$
 X\pmb{\beta} = \mathbf{y},
 $$
 where 
+
 $$
 \pmb{\beta} = (\eta,\tau_1,...,\tau_{32})'
 $$
@@ -79,7 +80,7 @@ We can also use use this assumption to get win probabilities.
 probs <- winprob_ols(data, "Rams", "cardinals")
 probs
 ```
-If we wanted to look at the chances of a team beating the spread, we could use `spreadprob_ols()'.
+If we wanted to look at the chances of a team beating the spread, we could use `spreadprob_ols()`.
 
 It is in the interest of the sports book to set the betting lines so each wager will have negative expectation, although they also consider the amount of risk based on where customers are placing their bets.  We would like to consider the expected value of each of our wagers.  In the long run, we could benefit from only placing wagers with positive expectation.  To see the expected value on wagering on either of the moneylines, we use `eML_ols()`.
 ```{r}
