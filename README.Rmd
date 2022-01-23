@@ -56,11 +56,13 @@ where $\varepsilon_j$ is observed as the residuals in our model.  The indices $h
 $$
 X\pmb{\beta} = \mathbf{y},
 $$
+
 where 
 
 $$
 \pmb{\beta} = (\eta,\tau_1,...,\tau_{32})'
 $$
+
 The design matrix $X$ has a row for each game in the data set, where each row has a 1 in the first column, a 1 in column $h_j$, and a $-1$ in column $a_j$.  We cannot estimate $\pmb{\beta}$ directly, but we can estimate $\eta$ as well as the difference of any two $\tau$'s using ordinary least squares.  This serves as a good predictor for the outcome of a game.  Given a data frame of games resembling `G`, we can produce the appropriate $X$ and $\mathbf{y}$ using the function `XY_differences()`.
 ```{r}
 data <- XY_differences(G)

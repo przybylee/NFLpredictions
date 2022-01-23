@@ -64,9 +64,11 @@ away teams respectively. The effect of home field advantage is
 represented by *η*. The matrix equation associated with this is
 
 *X***β** = **y**,
+
 where
 
 **β** = (*η*,*τ*<sub>1</sub>,...,*τ*<sub>32</sub>)′
+
 The design matrix *X* has a row for each game in the data set, where
 each row has a 1 in the first column, a 1 in column *h*<sub>*j*</sub>,
 and a  − 1 in column *a*<sub>*j*</sub>. We cannot estimate **β**
