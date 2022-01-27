@@ -45,11 +45,19 @@ tail(G)
 #>                         Team Score Year Week
 #> new.538     Seattle Seahawks    38 2021   18
 #> new.539    Arizona Cardinals    30 2021   18
-#> new.540 Los Angeles Chargers    32 2021   18
-#> new.541    Las Vegas Raiders    35 2021   18
-#> new.542  San Francisco 49ers    27 2021   18
-#> new.543     Los Angeles Rams    24 2021   18
+#> new.540  San Francisco 49ers    27 2021   18
+#> new.541     Los Angeles Rams    24 2021   18
+#> new.542 Los Angeles Chargers    32 2021   18
+#> new.543    Las Vegas Raiders    35 2021   18
 ```
+
+It is important to note that since there were 18 weeks of the 2021
+regular season we set `wk_stop = 18`. If the value of this parameter is
+larger than the number of weeks played, the function may produce an
+error. A nice feature of Profootball Reference is that the playoff weeks
+are a continuation of the week numbers used in the regular season. This
+means for 2021, week 19 is the wild card round, week 20 is the
+divisional round, week 21 is the conference championships, etc.
 
 Next, we want to use linear regression to estimate the relative
 strengths of each team. We can use a simple model, where
