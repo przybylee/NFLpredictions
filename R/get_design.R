@@ -32,7 +32,8 @@ get_design <- function(data){
     row <- row +1
   }
   Y_binary <- ifelse(Y_diff >= 0, 1, 0)
-  X_sum <- abs(X[,-1])
+  X_sum <- abs(X)
+  colnames(X)[1] <- "int"
   #start <- paste(data$Year[1], ", week ", data$Week[1])
   #end <- paste(data$Year[N], ", week ", data$Week[N])
   result <- list(X,X_sum, Y_diff, Y_sum, Y_binary, teams, data)
