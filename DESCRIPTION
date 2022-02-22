@@ -15,7 +15,8 @@ Imports:
     MASS,
     readr,
     rvest,
-    stats
+    stats,
+    tidyr
 URL: https://github.com/przybylee/NFLpredictions
 BugReports: https://github.com/przybylee/NFLpredictions/issues
 Depends: 
