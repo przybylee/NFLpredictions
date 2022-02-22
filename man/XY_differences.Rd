@@ -5,10 +5,10 @@
 \title{From a collection of game scores, create a design matrix X and a vector of differences Y_diff
 to use for linear regression.}
 \usage{
-XY_differences(games)
+XY_differences(data)
 }
 \arguments{
-\item{games}{A data frame with columns for Team, Score, Year, and Week produced by scrape_games.  Last 3 columns must be numeric.}
+\item{data}{A data frame with columns for Team, Score, Year, and Week produced by scrape_games.  Last 3 columns must be numeric.}
 }
 \value{
 A list with 6 elements
