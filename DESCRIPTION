@@ -16,6 +16,7 @@ Imports:
     readr,
     rvest,
     stats,
+    stringr,
     tidyr
 URL: https://github.com/przybylee/NFLpredictions
 BugReports: https://github.com/przybylee/NFLpredictions/issues

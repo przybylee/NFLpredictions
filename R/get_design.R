@@ -41,3 +41,25 @@ get_design <- function(data){
                      "games")
   return(result)
 }
+
+
+#' Search for teams in the design
+#'
+#' @param design Design object with information from a collection of games.
+#' This is a list that is the output of get_design()
+#' @param string String which contains part of a team name being searched for
+#' @param ignore.case Whether or not the searc is case sensitive
+#'
+#' @return A vector of team names that contain string
+#' @export
+#'
+#' @examples
+#' design <- get_design(regssn2021)
+#' team_detect(design, "new")
+team_detect <- function(design, string, ignore.case = TRUE){
+  teams <- design$teams
+  match_indx <- teams %>%
+    stringr::str_detect(stringr::regex(string, ignore_case = ignore.case))
+  matches <- teams[match_indx]
+  return(matches)
+}
