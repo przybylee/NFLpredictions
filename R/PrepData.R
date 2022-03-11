@@ -1,3 +1,33 @@
+#' Remove games from data set that have missing information
+#'
+#' @param data A data frame with columns for Team, Score, Year, and Week
+#' produced by scrape_games.  These 3 columns must be numeric.
+#' @param game_ids Logical argument to indicate if we want the returned data frame
+#' to include game_id numbers
+#'
+#' @return A cleaned version of game data with games that had incomplete data
+#' removed
+#' @export
+#'
+#' @examples
+#' drop_incomplete_games(regssn2021, game_ids = TRUE)
+drop_incomplete_games <- function(data, game_ids = FALSE){
+ n <- length(data[,1])
+ data0 <- data %>% dplyr::mutate(game_id = rep(1:(n/2), each = 2))
+ complete <- stats::complete.cases(data)
+ complete_games <- data0 %>%
+   dplyr::mutate(complete = ifelse(complete, 1,0)) %>%
+   dplyr::group_by(game_id) %>%
+   dplyr::summarize(cases = sum(complete)) %>%
+   dplyr::filter(cases == 2) %>%
+   dplyr::pull(game_id)
+ data0 <- dplyr::filter(data0, game_id %in% complete_games)
+ if(!game_ids){
+   data0 <- data0 %>% dplyr::select(!game_id)
+ }
+ return(data0)
+}
+
 
 #' Get design matrix and values from a season
 #'

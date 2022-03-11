@@ -98,3 +98,13 @@ eSpread_ols(data, "Rams", "Cardinals", hspread = -3.5, wager = 40)
 If left null, the value for `aspread`, the home teams spread is assumed to be the opposit of `hspread`.  The default values of `hBL` and `aBL` are -110, since that is usually the standard betting line for something with equal odds after vigorish is applied.
 
 After considering the probabities, betting on the Cardinals moneyline seems to have the best payout relative to our estimated probability of this actually happening.  This is still the least likely wager to pay off.
+
+## Functions to come
+- over_under_ols (written)
+- drop_incomplete_games (written)
+- winprob_emp (written)
+- eML_emp
+- eSpread_emp
+- e_overunder_ols 
+- winprob_log
+- overunder_emp

@@ -3,6 +3,7 @@
 export(XY_differences)
 export(american_to_odds)
 export(conf_int_ols)
+export(drop_incomplete_games)
 export(eML_ols)
 export(eSpread_ols)
 export(get_design)

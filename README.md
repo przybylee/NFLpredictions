@@ -33,21 +33,1108 @@ Reference](https://www.pro-football-reference.com/).
 ``` r
 library(NFLpredictions)
 G <- scrape_games(ssn = 2021, wk_start = 1, wk_stop = 18)
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
+
+#> Warning: 1 parsing failure.
+#> row col expected actual
+#>   1  -- a number
 head(G)
-#>                       Team Score Year Week
-#> new         Dallas Cowboys    29 2021    1
-#> new.1 Tampa Bay Buccaneers    31 2021    1
-#> new.2  Philadelphia Eagles    32 2021    1
-#> new.3      Atlanta Falcons     6 2021    1
-#> new.4  Pittsburgh Steelers    23 2021    1
-#> new.5        Buffalo Bills    16 2021    1
+#>                        Team Score Year Week
+#> new.1  Tampa Bay Buccaneers    31 2021    1
+#> new.3       Atlanta Falcons     6 2021    1
+#> new.5         Buffalo Bills    16 2021    1
+#> new.7     Carolina Panthers    19 2021    1
+#> new.9    Cincinnati Bengals    27 2021    1
+#> new.11   Indianapolis Colts    16 2021    1
 tail(G)
 #>                         Team Score Year Week
-#> new.538     Seattle Seahawks    38 2021   18
+#> new.533      New York Giants     7 2021   18
+#> new.535     Baltimore Ravens    13 2021   18
+#> new.537 Tampa Bay Buccaneers    41 2021   18
 #> new.539    Arizona Cardinals    30 2021   18
-#> new.540  San Francisco 49ers    27 2021   18
 #> new.541     Los Angeles Rams    24 2021   18
-#> new.542 Los Angeles Chargers    32 2021   18
 #> new.543    Las Vegas Raiders    35 2021   18
 ```
 
@@ -99,9 +1186,9 @@ we use `point_spread_ols` to estimate the Rams’ margin of victory.
 
 ``` r
 point_spread_ols(data, "Rams", "Cardinals", a = 0.05)
-#> [1] "Los Angeles Rams beat Arizona Cardinals by 1.8"
-#>        est  std.dev     lower    upper
-#> 1 1.844102 4.444196 -6.910509 10.59871
+#> [1] "Arizona Cardinals beat Los Angeles Rams by 1.4"
+#>         est  std.dev     lower    upper
+#> 1 -1.388543 7.151303 -15.56985 12.79276
 ```
 
 Notice that since we set `a = 0.05`, we get the limits of a 95%
@@ -113,10 +1200,10 @@ We can also use use this assumption to get win probabilities.
 
 ``` r
 probs <- winprob_ols(data, "Rams", "cardinals")
-#> [1] "The estimated win probability for the  Arizona Cardinals at Los Angeles Rams is 0.445"
+#> [1] "The estimated win probability for the  Arizona Cardinals at Los Angeles Rams is 0.541"
 probs
-#>                  h                 a h_spread    h_prob    a_prob method
-#> 1 Los Angeles Rams Arizona Cardinals 1.844102 0.5546997 0.4453003 normal
+#>                  h                 a  h_spread   h_prob   a_prob method
+#> 1 Los Angeles Rams Arizona Cardinals -1.388543 0.459486 0.540514 normal
 ```
 
 If we wanted to look at the chances of a team beating the spread, we
@@ -132,8 +1219,8 @@ moneylines, we use `eML_ols()`.
 
 ``` r
 eML_ols(data, "Rams", "Cardinals", wager = 40, hBL = -170, aBL = 150)
-#>                  h                 a     eHome    eAway method
-#> 1 Los Angeles Rams Arizona Cardinals -4.760257 4.530034 normal
+#>                  h                 a     eHome   eAway method
+#> 1 Los Angeles Rams Arizona Cardinals -10.80912 14.0514 normal
 ```
 
 We can also consider the expected value of betting on either team to
@@ -141,8 +1228,8 @@ beat the spread.
 
 ``` r
 eSpread_ols(data, "Rams", "Cardinals", hspread = -3.5, wager = 40)
-#>                  h                 a     eHome    eAway method
-#> 1 Los Angeles Rams Arizona Cardinals -5.571235 1.934871 normal
+#>                  h                 a     eHome   eAway method
+#> 1 Los Angeles Rams Arizona Cardinals -12.50023 8.86387 normal
 ```
 
 If left null, the value for `aspread`, the home teams spread is assumed
@@ -154,3 +1241,14 @@ After considering the probabities, betting on the Cardinals moneyline
 seems to have the best payout relative to our estimated probability of
 this actually happening. This is still the least likely wager to pay
 off.
+
+## Functions to come
+
+-   over_under_ols (written)
+-   drop_incomplete_games (written)
+-   winprob_emp (written)
+-   eML_emp
+-   eSpread_emp
+-   e_overunder_ols
+-   winprob_log
+-   overunder_emp
