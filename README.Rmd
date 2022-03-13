@@ -65,9 +65,9 @@ $$
 \pmb{\beta} = (\eta,\tau_1,...,\tau_{32})'
 $$
 
-The design matrix $X$ has a row for each game in the data set, where each row has a 1 in the first column, a 1 in column $h_j$, and a $-1$ in column $a_j$.  We cannot estimate $\pmb{\beta}$ directly, but we can estimate $\eta$ as well as the difference of any two $\tau$'s using ordinary least squares.  This serves as a good predictor for the outcome of a game.  Given a data frame of games resembling `G`, we can produce the appropriate $X$ and $\mathbf{y}$ using the function `XY_differences()`.
+The design matrix $X$ has a row for each game in the data set, where each row has a 1 in the first column, a 1 in column $h_j$, and a $-1$ in column $a_j$.  We cannot estimate $\pmb{\beta}$ directly, but we can estimate $\eta$ as well as the difference of any two $\tau$'s using ordinary least squares.  This serves as a good predictor for the outcome of a game.  Given a data frame of games resembling `G`, we can produce the appropriate $X$ and $\mathbf{y}$ using the function `get_design()`.
 ```{r}
-data <- XY_differences(G)
+data <- get_design(G)
 names(data)
 ```
 
@@ -103,7 +103,7 @@ After considering the probabities, betting on the Cardinals moneyline seems to h
 - over_under_ols (written)
 - drop_incomplete_games (written)
 - winprob_emp (written)
-- eML_emp
+- eML_emp (written)
 - eSpread_emp
 - e_overunder_ols 
 - winprob_log
