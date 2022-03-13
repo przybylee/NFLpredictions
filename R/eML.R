@@ -76,7 +76,8 @@ eML_ols <- function(data, home, away, wager = 1, hBL = -110, aBL = -110,
 eML_emp <- function(design, home, away, wager = 1, hBL = -110, aBL = -110,
                     home_effect = TRUE){
   probs <- winprob_emp(design, home, away, home_effect, verbose = FALSE)
-
+  HomeTm <- probs$h[1]
+  AwayTm <- probs$a[1]
   #Compute probs for each team winning
   AwayProb <- probs$a_prob
   HomeProb <- probs$h_prob
@@ -88,3 +89,4 @@ eML_emp <- function(design, home, away, wager = 1, hBL = -110, aBL = -110,
                     method = "empirical")
   return(EXP)
 }
+
