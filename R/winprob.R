@@ -1,6 +1,6 @@
 #' Calculate the win probability using OLS estimators
 #'
-#' @param data List of season data as produced by get_design(), contains
+#' @param design List of season data as produced by get_design(), contains
 #' design matrix X, scores Y_diff, and a list of teams
 #' @param home Name of the home team, could be a substring
 #' @param away Name of the away team, could be a substring
@@ -17,10 +17,10 @@
 #' G <- regssn2021
 #' List <- get_design(G)
 #' winprob_ols(List, "Patriots", "Bills")
-winprob_ols <- function(data, home, away, home_effect = TRUE, verbose = TRUE){
-  X <- data$X
-  Y <- data$Y_dif
-  teams <- data$teams
+winprob_ols <- function(design, home, away, home_effect = TRUE, verbose = TRUE){
+  X <- design$X
+  Y <- design$Y_dif
+  teams <- design$teams
   #Create contrast vector
   home_indx <- which(grepl(home, teams, ignore.case = TRUE))[1]
   away_indx <- which(grepl(away, teams, ignore.case = TRUE))[1]
@@ -36,8 +36,8 @@ winprob_ols <- function(data, home, away, home_effect = TRUE, verbose = TRUE){
   mu <- t(cont)%*%MASS::ginv(X.X)%*%t(X)%*%Y
   sigsq <- anova(reg)[2,3]
   sigma <- sqrt(sigsq)
-  AwayProb <- pnorm(0,mean = mu, sd = sigma)
-  HomeProb <- pnorm(0,mean = mu, sd = sigma, lower.tail = FALSE)
+  AwayProb <- stats::pnorm(0,mean = mu, sd = sigma)
+  HomeProb <- stats::pnorm(0,mean = mu, sd = sigma, lower.tail = FALSE)
   print(paste("The estimated win probability for the ", AwayTm, "at",
               HomeTm, "is", round(AwayProb,3), sep = " " ))
   probs <- data.frame(h = HomeTm, a = AwayTm, h_spread = mu,
@@ -94,6 +94,6 @@ if (verbose){
     print()
 }
   probs <- data.frame(h = HomeTm, a = AwayTm, h_spread = mu,
-                      h_prob = HomeProb, a_prob = AwayProb, method = "normal")
+                      h_prob = HomeProb, a_prob = AwayProb, method = "empirical")
   return(probs)
 }

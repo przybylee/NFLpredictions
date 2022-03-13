@@ -4,10 +4,10 @@
 \alias{winprob_ols}
 \title{Calculate the win probability using OLS estimators}
 \usage{
-winprob_ols(data, home, away, home_effect = TRUE, verbose = TRUE)
+winprob_ols(design, home, away, home_effect = TRUE, verbose = TRUE)
 }
 \arguments{
-\item{data}{List of season data as produced by get_design(), contains
+\item{design}{List of season data as produced by get_design(), contains
 design matrix X, scores Y_diff, and a list of teams}
 
 \item{home}{Name of the home team, could be a substring}
