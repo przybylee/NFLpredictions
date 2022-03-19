@@ -64,9 +64,8 @@ get_design <- function(data){
   Y_binary <- ifelse(Y_diff >= 0, 1, 0)
   X_sum <- abs(X)
   colnames(X)[1] <- "int"
-  #start <- paste(data$Year[1], ", week ", data$Week[1])
-  #end <- paste(data$Year[N], ", week ", data$Week[N])
-  result <- list(X,X_sum, Y_diff, Y_sum, Y_binary, teams, data)
+  team_ids <- data.frame(tm_id = 1:length(teams), name = teams)
+  result <- list(X,X_sum, Y_diff, Y_sum, Y_binary, team_ids, data)
   names(result) <- c("X", "X_sum", "Y_diff", "Y_sum", "Y_binary", "teams",
                      "games")
   return(result)
@@ -88,8 +87,9 @@ get_design <- function(data){
 #' team_detect(design, "new")
 team_detect <- function(design, string, ignore.case = TRUE){
   teams <- design$teams
-  match_indx <- teams %>%
+  match_indx <- teams$name %>%
     stringr::str_detect(stringr::regex(string, ignore_case = ignore.case))
-  matches <- teams[match_indx]
+  matches <- teams %>%
+    filter(match_indx)
   return(matches)
 }
