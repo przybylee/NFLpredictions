@@ -24,8 +24,8 @@ spreadprob_ols <- function(data, home, away, hspread, aspread = NULL,
   Y <- data$Y_dif
   teams <- data$teams
   #Create contrast vector
-  home_indx <- which(grepl(home, teams, ignore.case = TRUE))[1]
-  away_indx <- which(grepl(away, teams, ignore.case = TRUE))[1]
+  home_indx <- which(grepl(home, teams$name, ignore.case = TRUE))[1]
+  away_indx <- which(grepl(away, teams$name, ignore.case = TRUE))[1]
   HomeTm <- teams[home_indx]
   AwayTm <- teams[away_indx]
   cont <- c(ifelse(home_effect, 1, 0), rep(0, length(teams)))

@@ -89,7 +89,6 @@ team_detect <- function(design, string, ignore.case = TRUE){
   teams <- design$teams
   match_indx <- teams$name %>%
     stringr::str_detect(stringr::regex(string, ignore_case = ignore.case))
-  matches <- teams %>%
-    filter(match_indx)
+  matches <- teams[match_indx,]
   return(matches)
 }
