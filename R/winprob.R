@@ -21,12 +21,23 @@ winprob_ols <- function(design, home, away, home_effect = TRUE, verbose = TRUE){
   X <- design$X
   Y <- design$Y_dif
   teams <- design$teams
+  #If teams are given as strings, look up id numbers
+  if (is.character(home)){
+    home <- home %>%
+      team_detect(design, .) %>%
+      dplyr::pull(tm_id)
+    home <- home[1]
+  }
+  if (is.character(away)){
+    away <- away %>%
+      team_detect(design, .) %>%
+      dplyr::pull(tm_id)
+    away <- away[1]
+  }
   #Create contrast vector
-  home_indx <- which(grepl(home, teams, ignore.case = TRUE))[1]
-  away_indx <- which(grepl(away, teams, ignore.case = TRUE))[1]
-  HomeTm <- teams[home_indx]
-  AwayTm <- teams[away_indx]
-  cont <- c(ifelse(home_effect, 1, 0), rep(0, length(teams)))
+  HomeTm <- teams$name[home]
+  AwayTm <- teams$name[away]
+  cont <- c(ifelse(home_effect, 1, 0), rep(0, length(teams$name)))
   cont[colnames(X) == HomeTm] <- 1
   cont[colnames(X) == AwayTm] <- -1
   reg <- lm(Y ~ X+0)
@@ -68,12 +79,23 @@ winprob_emp <- function(design, home, away, home_effect = TRUE, verbose = TRUE){
   X <- design$X
   Y <- design$Y_dif
   teams <- design$teams
-  #Create contrast vector
-  home_indx <- which(grepl(home, teams, ignore.case = TRUE))[1]
-  away_indx <- which(grepl(away, teams, ignore.case = TRUE))[1]
-  HomeTm <- teams[home_indx]
-  AwayTm <- teams[away_indx]
-  cont <- c(ifelse(home_effect, 1, 0), rep(0, length(teams)))
+  #If teams are given as strings, look up id numbers
+  if (is.character(home)){
+    home <- home %>%
+      team_detect(design, .) %>%
+      dplyr::pull(tm_id)
+    home <- home[1]
+  }
+  if (is.character(away)){
+    away <- away %>%
+      team_detect(design, .) %>%
+      dplyr::pull(tm_id)
+    away <- away[1]
+  }
+  HomeTm <- teams$name[home]
+  AwayTm <- teams$name[away]
+  #Create contrast Vector
+  cont <- c(ifelse(home_effect, 1, 0), rep(0, length(teams$name)))
   cont[colnames(X) == HomeTm] <- 1
   cont[colnames(X) == AwayTm] <- -1
   reg <- lm(Y ~ X+0)
