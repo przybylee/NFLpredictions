@@ -1,4 +1,5 @@
-#' Calculate the win probability using OLS estimators
+#' Calculate the win probability using assuming a normal distribution on point
+#' differential for each game
 #'
 #' @param design List of season data as produced by get_design(), contains
 #' design matrix X, scores Y_diff, and a list of teams
@@ -16,8 +17,8 @@
 #' @examples
 #' G <- regssn2021
 #' List <- get_design(G)
-#' winprob_ols(List, "Patriots", "Bills")
-winprob_ols <- function(design, home, away, home_effect = TRUE, verbose = TRUE){
+#' winprob_normal(List, "Patriots", "Bills")
+winprob_normal <- function(design, home, away, home_effect = TRUE, verbose = TRUE){
   X <- design$X
   Y <- design$Y_dif
   teams <- design$teams
