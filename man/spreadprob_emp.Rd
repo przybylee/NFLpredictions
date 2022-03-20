@@ -35,7 +35,6 @@ the spread
 Compute win probability using the empirical distribution
 }
 \examples{
-G <- regssn2021
-design <- get_design(G)
-spreadprob_emp(design, "Patriots", "Bills", h_spread = 5)
+design <- get_design(regssn2021)
+spreadprob_emp(design, "Patriots", "Bills", hspread = 5)
 }

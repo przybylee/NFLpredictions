@@ -64,7 +64,7 @@ espread_normal <- function(design, home, away, hspread = 0, aspread = NULL,
 #' @examples
 #' List <- get_design(regssn2021)
 #' espread_emp(List, "Patriots", "Bills", hspread = -5, hBL = -115, aBL = -105)
-espread_normal <- function(design, home, away, hspread = 0, aspread = NULL,
+espread_emp <- function(design, home, away, hspread = 0, aspread = NULL,
                            home_effect = TRUE, wager = 1, hBL = -110, aBL = -110){
   #Compute probs that each team beats the spread
   probs <- spreadprob_emp(design, home, away, hspread, aspread, home_effect)

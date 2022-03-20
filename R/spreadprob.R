@@ -20,7 +20,7 @@
 #' List <- get_design(G)
 #' spreadprob_normal(List, "Patriots", "Bills", -5)
 spreadprob_normal <- function(design, home, away, hspread = 0, aspread = NULL,
-                              hBL = -110, aBL = -110, home_effect = TRUE){
+                              home_effect = TRUE){
   X <- design$X
   Y <- design$Y_dif
   teams <- design$teams
@@ -78,9 +78,8 @@ spreadprob_normal <- function(design, home, away, hspread = 0, aspread = NULL,
 #' @export
 #'
 #' @examples
-#' G <- regssn2021
-#' design <- get_design(G)
-#' spreadprob_emp(design, "Patriots", "Bills", h_spread = 5)
+#' design <- get_design(regssn2021)
+#' spreadprob_emp(design, "Patriots", "Bills", hspread = 5)
 spreadprob_emp <- function(design, home, away, hspread = 0, aspread = NULL,
                            home_effect = TRUE){
   X <- design$X

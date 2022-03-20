@@ -11,8 +11,6 @@ spreadprob_normal(
   away,
   hspread = 0,
   aspread = NULL,
-  hBL = -110,
-  aBL = -110,
   home_effect = TRUE
 )
 }
