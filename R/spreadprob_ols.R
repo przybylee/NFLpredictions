@@ -22,7 +22,7 @@ spreadprob_ols <- function(data, home, away, hspread, aspread = NULL,
                            home_effect = TRUE){
   X <- data$X
   Y <- data$Y_dif
-  teams <- data$teams
+  teams <- data$teams$name
   #Create contrast vector
   home_indx <- which(grepl(home, teams$name, ignore.case = TRUE))[1]
   away_indx <- which(grepl(away, teams$name, ignore.case = TRUE))[1]
