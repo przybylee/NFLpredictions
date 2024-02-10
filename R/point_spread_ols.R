@@ -17,7 +17,7 @@
 #' List <- XY_differences(G)
 #' point_spread_ols(List, "Patriots", "Bills")
 point_spread_ols <- function(data, home, away, home_effect = TRUE, a = 0.05, verbose = TRUE){
-  teams <- data$teams
+  teams <- data$teams$name
   X <- data$X
   Y <- data$Y_diff
   home_indx <- which(grepl(home, teams, ignore.case = TRUE))[1]
