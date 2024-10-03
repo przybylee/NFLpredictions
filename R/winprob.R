@@ -38,6 +38,8 @@ winprob_normal <- function(design, home, away, home_effect = TRUE, verbose = TRU
   #Create contrast vector
   HomeTm <- teams$name[home]
   AwayTm <- teams$name[away]
+
+  #Make contrast into a matrix so we can predict on multple games at once
   cont <- c(ifelse(home_effect, 1, 0), rep(0, length(teams$name)))
   cont[colnames(X) == HomeTm] <- 1
   cont[colnames(X) == AwayTm] <- -1
