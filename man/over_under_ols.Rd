@@ -19,7 +19,7 @@ This is a list that is the output of get_design()}
 \item{verbose}{Whether or not a lengthy readout of the estimate is desired}
 }
 \value{
-
+A dataframe with the estimate and confidence interval
 }
 \description{
 Use ols to estimate the total points scored in a game between tm1 and tm2

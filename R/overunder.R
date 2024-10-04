@@ -9,7 +9,7 @@
 #' @param a The confidence level of the interval we estimate
 #' @param verbose Whether or not a lengthy readout of the estimate is desired
 #'
-#' @return
+#' @return A dataframe with the estimate and confidence interval
 #' @export
 #'
 #' @examples
