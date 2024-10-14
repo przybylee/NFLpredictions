@@ -2,11 +2,16 @@
 #'
 #' @param data A list containing a design matrix, score differences, and teams,
 #' as produced by the XY_differences function
-#' @param home The name of the home team, may be a substring
-#' @param away The name of the away team, may be a substring
+#' @param home A vector of home team names, may use distinct substrings
+#' @param away A vector of away team names, may use distinct substrings
 #' @param home_effect Logical, TRUE if we want to estimate with home field advantage
 #' @param a The level of the confidence interval
-#' @param verbose Logical, TRUE if we want to print who the winning team will be
+#'
+#' @details The order of teams in home and away must correspond with the games
+#' to predict on, meaning the first element of `home` plays the first element of
+#' `away`, and so on. The function uses the OLS method to estimate the point
+#' spread and the confidence interval assumes a normal distribution of
+#' point spread.
 #'
 #' @return A data frame describing the estimated point spread and the limits of a
 #' confidence level
@@ -16,25 +21,53 @@
 #' G <- regssn2021
 #' List <- XY_differences(G)
 #' point_spread_ols(List, "Patriots", "Bills")
-point_spread_ols <- function(data, home, away, home_effect = TRUE, a = 0.05, verbose = TRUE){
+point_spread_ols <- function(
+    data,
+    home, away,
+    home_effect = TRUE,
+    a = 0.05
+) {
   teams <- data$teams$name
-  X <- data$X
-  Y <- data$Y_diff
-  home_indx <- which(grepl(home, teams, ignore.case = TRUE))[1]
-  away_indx <- which(grepl(away, teams, ignore.case = TRUE))[1]
+  X <- data$X %>% rbind(c(0, rep(1, ncol(data$X) - 1)))
+  Y <- c(data$Y_diff, 0)
+
+  model <- lm(Y ~ 0 + X)
+  beta <- coef(model)
+
+  home_indx <- purrr::map_int(home,
+                              ~which(grepl(.x, teams, ignore.case = TRUE))[1]
+  )
+
+  away_indx <- purrr::map_int(away,
+                              ~which(grepl(.x, teams, ignore.case = TRUE))[1]
+  )
+
   HomeTm <- teams[home_indx]
   AwayTm <- teams[away_indx]
-  cont <- c(ifelse(home_effect, 1, 0), rep(0, length(teams)))
-  cont[colnames(X) == HomeTm] <- 1
-  cont[colnames(X) == AwayTm] <- -1
+
+  beta_home <- beta[paste0("X", HomeTm)]
+  beta_away <- beta[paste0("X", AwayTm)]
+  beta_int <- 0
+  if(home_effect) beta_int <- beta["Xint"]
+
+  spread <- round(beta_int + beta_home - beta_away, digits = 1) %>% as.numeric()
+
+  # Esimate standard deviation in the model
+  deg_f <- model$df.residual
+  std_dev <- sqrt(sum(model$residuals^2) / model$df.residual) %>% round(1)
+
   #Put contrast vector c into confint to estimate HomeTm score - AwayTm score
-  est <- conf_int_ols(X, y = Y, cont = cont, d = 0, a = a)
-  spread <- round(est$est[1], digits = 1)
-  if (spread >=0){
-    print(paste(HomeTm, "beat", AwayTm, "by", spread))
-  }
-  else {
-    print(paste(AwayTm, "beat", HomeTm, "by", abs(spread)))
-  }
-  return(est)
+  output <- data.frame(Home = HomeTm,
+                       Away = AwayTm,
+                       spread = spread
+                       ) %>%
+    as_tibble() %>%
+    mutate(Winner = ifelse(spread >= 0, Home, Away),
+           Loser = ifelse(spread >= 0, Away, Home),
+           lower = spread - stats::qt(1 - a/2, deg_f) * std_dev,
+           upper = spread + stats::qt(1 - a/2, deg_f) * std_dev,
+           std_dev = std_dev
+           )
+
+  return(output)
 }
