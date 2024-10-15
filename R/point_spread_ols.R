@@ -5,6 +5,7 @@
 #' @param home A vector of home team names, may use distinct substrings
 #' @param away A vector of away team names, may use distinct substrings
 #' @param home_effect Logical, TRUE if we want to estimate with home field advantage
+#' @param home_fit Logical, TRUE if we want to fit the OLS model with home field advantage
 #' @param a The level of the confidence interval
 #'
 #' @details The order of teams in home and away must correspond with the games
@@ -25,10 +26,20 @@ point_spread_ols <- function(
     data,
     home, away,
     home_effect = TRUE,
+    home_fit = TRUE,
     a = 0.05
 ) {
   teams <- data$teams$name
-  X <- data$X %>% rbind(c(0, rep(1, ncol(data$X) - 1)))
+
+  X <- data$X
+  X <- X %>% rbind(c(0, rep(1, ncol(data$X) - 1)))
+
+  if(!home_fit) {
+    #Drop the first column for home field advantage
+    X <- X[,2:ncol(X)]
+    home_effect <- FALSE
+  }
+
   Y <- c(data$Y_diff, 0)
 
   model <- lm(Y ~ 0 + X)
@@ -68,6 +79,8 @@ point_spread_ols <- function(
            upper = spread + stats::qt(1 - a/2, deg_f) * std_dev,
            std_dev = std_dev
            )
+
+  output <- list(model = model, predictions = output)
 
   return(output)
 }
