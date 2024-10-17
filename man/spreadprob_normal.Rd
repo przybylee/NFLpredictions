@@ -6,27 +6,30 @@
 errors}
 \usage{
 spreadprob_normal(
-  design,
-  home,
-  away,
+  data,
   hspread = 0,
   aspread = NULL,
-  home_effect = TRUE
+  home,
+  away,
+  home_advantage_fit = TRUE,
+  home_advantage_predict = TRUE
 )
 }
 \arguments{
-\item{design}{List of season data as produced by get_design(), contains
+\item{data}{List of season data as produced by get_design(), contains
 design matrix X, scores Y_diff, and a list of teams}
-
-\item{home}{Name of the home team, could be a substring}
-
-\item{away}{Name of the away team, could be a substring}
 
 \item{hspread}{Point spread for the home team}
 
 \item{aspread}{Point spread for the away team}
 
-\item{home_effect}{Logical, indicates if there is home field advantage}
+\item{home}{Name of the home team, could be a substring}
+
+\item{away}{Name of the away team, could be a substring}
+
+\item{home_advantage_fit}{Logical, TRUE if we want to fit the OLS model with home field advantage}
+
+\item{home_advantage_predict}{Logical, TRUE if we want to estimate point spreads with home field advantage}
 }
 \value{
 A data frame containing the teams and their win probabilities
@@ -36,7 +39,5 @@ Calculate the probability of each team beating the spread assuming normal
 errors
 }
 \examples{
-G <- regssn2021
-List <- get_design(G)
-spreadprob_normal(List, "Patriots", "Bills", -5)
+#None
 }

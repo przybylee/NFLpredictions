@@ -29,11 +29,12 @@ original
 home <- c("Browns", "Cowboys", "Bills")
 away <- c("Jets", "Eagles", "Patriots")
 
-point_spread_ols(data, home, away, TRUE)
+point_spread <- point_spread_ols(data, home, away, TRUE)
+spread_probs <- spreadprob_normal(data, 0, aspread = NULL, home, away, TRUE)
 
 # Things to do
 # 1. Fix the point spread function to handle multiple games at once #DONE
-# 2. Fix OLS win prob function to use new point spread ols
+# 2. Fix OLS win prob function to use new point spread ols #Done
 # 3. Fix residual win prob function to use new point spread ols
 # 4. Add a GLM function to estimate win probabilities
 

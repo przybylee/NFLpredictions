@@ -1,62 +1,75 @@
-#' Calculate the win probability using assuming a normal distribution on point
-#' differential for each game
+#' Calculate the win probability of the home team assuming a normal
+#' distribution on point differential for each game
 #'
-#' @param design List of season data as produced by get_design(), contains
+#' @param data List of season data as produced by get_design(), contains
 #' design matrix X, scores Y_diff, and a list of teams
+#' @param hspread Point spread for the home team
+#' @param aspread Point spread for the away team
 #' @param home Name of the home team, could be a substring
 #' @param away Name of the away team, could be a substring
-#' @param home_effect Logical, indicates if there is home field advantage
-#' @param verbose Logical, indicates if we want output to read win probabilities
+#' @param home_advantage_fit Logical, TRUE if we want to fit the OLS model with home field advantage
+#' @param home_advantage_predict Logical, TRUE if we want to estimate point spreads with home field advantage
 #'
 #' @return A data frame containing the teams and their win probabilities
 #' @export
+#'
 #' @importFrom stats pnorm
 #' @importFrom stats anova
 #' @importFrom stats lm
 #'
 #' @examples
-#' G <- regssn2021
-#' List <- get_design(G)
-#' winprob_normal(List, "Patriots", "Bills")
-winprob_normal <- function(design, home, away, home_effect = TRUE, verbose = TRUE){
-  X <- design$X
-  Y <- design$Y_dif
-  teams <- design$teams
-  #If teams are given as strings, look up id numbers
-  if (is.character(home)){
-    home <- home %>%
-      team_detect(design, .) %>%
-      dplyr::pull(tm_id)
-    home <- home[1]
-  }
-  if (is.character(away)){
-    away <- away %>%
-      team_detect(design, .) %>%
-      dplyr::pull(tm_id)
-    away <- away[1]
-  }
-  #Create contrast vector
-  HomeTm <- teams$name[home]
-  AwayTm <- teams$name[away]
+#' #NONE
+winprob_normal <- function(
+    data,
+    home, away,
+    home_advantage_fit = TRUE,
+    home_advantage_predict = TRUE
+) {
+  output <- spread_prob_normal(data, home, away,
+                               hspread = 0, aspread = NULL,
+                               home_advantage_fit, home_advantage_predict
+  )
 
-  #Make contrast into a matrix so we can predict on multple games at once
-  cont <- c(ifelse(home_effect, 1, 0), rep(0, length(teams$name)))
-  cont[colnames(X) == HomeTm] <- 1
-  cont[colnames(X) == AwayTm] <- -1
-  reg <- lm(Y ~ X+0)
-  cont <- as.matrix(cont)
-  X.X <- t(X)%*%X
-  df <- nrow(X) - stats::anova(reg)[1,1]
-  mu <- t(cont)%*%MASS::ginv(X.X)%*%t(X)%*%Y
-  sigsq <- anova(reg)[2,3]
-  sigma <- sqrt(sigsq)
-  AwayProb <- stats::pnorm(0,mean = mu, sd = sigma)
-  HomeProb <- stats::pnorm(0,mean = mu, sd = sigma, lower.tail = FALSE)
-  print(paste("The estimated win probability for the ", AwayTm, "at",
-              HomeTm, "is", round(AwayProb,3), sep = " " ))
-  probs <- data.frame(h = HomeTm, a = AwayTm, h_spread = mu,
-                      h_prob = HomeProb, a_prob = AwayProb, method = "normal")
-  return(probs)
+  return(output)
+
+  # X <- design$X
+  # Y <- design$Y_dif
+  # teams <- design$teams
+  # #If teams are given as strings, look up id numbers
+  # if (is.character(home)){
+  #   home <- home %>%
+  #     team_detect(design, .) %>%
+  #     dplyr::pull(tm_id)
+  #   home <- home[1]
+  # }
+  # if (is.character(away)){
+  #   away <- away %>%
+  #     team_detect(design, .) %>%
+  #     dplyr::pull(tm_id)
+  #   away <- away[1]
+  # }
+  # #Create contrast vector
+  # HomeTm <- teams$name[home]
+  # AwayTm <- teams$name[away]
+  #
+  # #Make contrast into a matrix so we can predict on multple games at once
+  # cont <- c(ifelse(home_effect, 1, 0), rep(0, length(teams$name)))
+  # cont[colnames(X) == HomeTm] <- 1
+  # cont[colnames(X) == AwayTm] <- -1
+  # reg <- lm(Y ~ X+0)
+  # cont <- as.matrix(cont)
+  # X.X <- t(X)%*%X
+  # df <- nrow(X) - stats::anova(reg)[1,1]
+  # mu <- t(cont)%*%MASS::ginv(X.X)%*%t(X)%*%Y
+  # sigsq <- anova(reg)[2,3]
+  # sigma <- sqrt(sigsq)
+  # AwayProb <- stats::pnorm(0,mean = mu, sd = sigma)
+  # HomeProb <- stats::pnorm(0,mean = mu, sd = sigma, lower.tail = FALSE)
+  # print(paste("The estimated win probability for the ", AwayTm, "at",
+  #             HomeTm, "is", round(AwayProb,3), sep = " " ))
+  # probs <- data.frame(h = HomeTm, a = AwayTm, h_spread = mu,
+  #                     h_prob = HomeProb, a_prob = AwayProb, method = "normal")
+  # return(probs)
 }
 
 

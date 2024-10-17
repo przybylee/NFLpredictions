@@ -2,32 +2,40 @@
 % Please edit documentation in R/winprob.R
 \name{winprob_normal}
 \alias{winprob_normal}
-\title{Calculate the win probability using assuming a normal distribution on point
-differential for each game}
+\title{Calculate the win probability of the home team assuming a normal
+distribution on point differential for each game}
 \usage{
-winprob_normal(design, home, away, home_effect = TRUE, verbose = TRUE)
+winprob_normal(
+  data,
+  home,
+  away,
+  home_advantage_fit = TRUE,
+  home_advantage_predict = TRUE
+)
 }
 \arguments{
-\item{design}{List of season data as produced by get_design(), contains
+\item{data}{List of season data as produced by get_design(), contains
 design matrix X, scores Y_diff, and a list of teams}
 
 \item{home}{Name of the home team, could be a substring}
 
 \item{away}{Name of the away team, could be a substring}
 
-\item{home_effect}{Logical, indicates if there is home field advantage}
+\item{home_advantage_fit}{Logical, TRUE if we want to fit the OLS model with home field advantage}
 
-\item{verbose}{Logical, indicates if we want output to read win probabilities}
+\item{home_advantage_predict}{Logical, TRUE if we want to estimate point spreads with home field advantage}
+
+\item{hspread}{Point spread for the home team}
+
+\item{aspread}{Point spread for the away team}
 }
 \value{
 A data frame containing the teams and their win probabilities
 }
 \description{
-Calculate the win probability using assuming a normal distribution on point
-differential for each game
+Calculate the win probability of the home team assuming a normal
+distribution on point differential for each game
 }
 \examples{
-G <- regssn2021
-List <- get_design(G)
-winprob_normal(List, "Patriots", "Bills")
+#NONE
 }

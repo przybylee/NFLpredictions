@@ -8,24 +8,24 @@ point_spread_ols(
   data,
   home,
   away,
-  home_effect = TRUE,
-  a = 0.05,
-  verbose = TRUE
+  home_advantage_fit = TRUE,
+  home_advantage_predict = TRUE,
+  a = 0.05
 )
 }
 \arguments{
 \item{data}{A list containing a design matrix, score differences, and teams,
 as produced by the XY_differences function}
 
-\item{home}{The name of the home team, may be a substring}
+\item{home}{A vector of home team names, may use distinct substrings}
 
-\item{away}{The name of the away team, may be a substring}
+\item{away}{A vector of away team names, may use distinct substrings}
 
-\item{home_effect}{Logical, TRUE if we want to estimate with home field advantage}
+\item{home_advantage_fit}{Logical, TRUE if we want to fit the OLS model with home field advantage}
+
+\item{home_advantage_predict}{Logical, TRUE if we want to estimate point spreads with home field advantage}
 
 \item{a}{The level of the confidence interval}
-
-\item{verbose}{Logical, TRUE if we want to print who the winning team will be}
 }
 \value{
 A data frame describing the estimated point spread and the limits of a
@@ -33,6 +33,13 @@ confidence level
 }
 \description{
 Estimate the point spread from a season design object
+}
+\details{
+The order of teams in home and away must correspond with the games
+to predict on, meaning the first element of \code{home} plays the first element of
+\code{away}, and so on. The function uses the OLS method to estimate the point
+spread and the confidence interval assumes a normal distribution of
+point spread.
 }
 \examples{
 G <- regssn2021

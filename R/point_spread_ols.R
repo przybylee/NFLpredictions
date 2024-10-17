@@ -4,8 +4,8 @@
 #' as produced by the XY_differences function
 #' @param home A vector of home team names, may use distinct substrings
 #' @param away A vector of away team names, may use distinct substrings
-#' @param home_effect Logical, TRUE if we want to estimate with home field advantage
-#' @param home_fit Logical, TRUE if we want to fit the OLS model with home field advantage
+#' @param home_advantage_fit Logical, TRUE if we want to fit the OLS model with home field advantage
+#' @param home_advantage_predict Logical, TRUE if we want to estimate point spreads with home field advantage
 #' @param a The level of the confidence interval
 #'
 #' @details The order of teams in home and away must correspond with the games
@@ -25,8 +25,8 @@
 point_spread_ols <- function(
     data,
     home, away,
-    home_effect = TRUE,
-    home_fit = TRUE,
+    home_advantage_fit = TRUE,
+    home_advantage_predict = TRUE,
     a = 0.05
 ) {
   teams <- data$teams$name
@@ -34,10 +34,10 @@ point_spread_ols <- function(
   X <- data$X
   X <- X %>% rbind(c(0, rep(1, ncol(data$X) - 1)))
 
-  if(!home_fit) {
+  if(!home_advantage_fit) {
     #Drop the first column for home field advantage
     X <- X[,2:ncol(X)]
-    home_effect <- FALSE
+    home_advantage_predict <- FALSE
   }
 
   Y <- c(data$Y_diff, 0)
@@ -59,7 +59,7 @@ point_spread_ols <- function(
   beta_home <- beta[paste0("X", HomeTm)]
   beta_away <- beta[paste0("X", AwayTm)]
   beta_int <- 0
-  if(home_effect) beta_int <- beta["Xint"]
+  if(home_advantage_predict) beta_int <- beta["Xint"]
 
   spread <- round(beta_int + beta_home - beta_away, digits = 1) %>% as.numeric()
 
@@ -80,7 +80,7 @@ point_spread_ols <- function(
            std_dev = std_dev
            )
 
-  output <- list(model = model, predictions = output)
+  output <- list(model = model, predictions = output, estimates = beta)
 
   return(output)
 }
