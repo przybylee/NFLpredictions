@@ -4,15 +4,21 @@
 #' as produced by the XY_differences function
 #' @param home A vector of home team names, may use distinct substrings
 #' @param away A vector of away team names, may use distinct substrings
-#' @param home_advantage_fit Logical, TRUE if we want to fit the OLS model with home field advantage
-#' @param home_advantage_predict Logical, TRUE if we want to estimate point spreads with home field advantage
-#' @param a The level of the confidence interval
+#' @param home_advantage_fit Logical, indicates if we want to fit the OLS model
+#' with home field advantage
+#' @param home_advantage_predict Logical, TRUE if we want to estimate point
+#' spreads with home field advantage
+#' @param alpha The level of the confidence interval
 #'
 #' @details The order of teams in home and away must correspond with the games
 #' to predict on, meaning the first element of `home` plays the first element of
 #' `away`, and so on. The function uses the OLS method to estimate the point
 #' spread and the confidence interval assumes a normal distribution of
 #' point spread.
+#'
+#' The confidence interval on the spread assumes that all games are independent
+#' and the residuals are IID normal, and uses the derived t-distribution for
+#' estimated differences of the team effects in each game.
 #'
 #' @return A data frame describing the estimated point spread and the limits of a
 #' confidence level
@@ -27,7 +33,7 @@ point_spread_ols <- function(
     home, away,
     home_advantage_fit = TRUE,
     home_advantage_predict = TRUE,
-    a = 0.05
+    alpha = 0.05
 ) {
   teams <- data$teams$name
 
@@ -58,14 +64,32 @@ point_spread_ols <- function(
 
   beta_home <- beta[paste0("X", HomeTm)]
   beta_away <- beta[paste0("X", AwayTm)]
-  beta_int <- 0
-  if(home_advantage_predict) beta_int <- beta["Xint"]
 
-  spread <- round(beta_int + beta_home - beta_away, digits = 1) %>% as.numeric()
+  # Create matrix of contrasts
+  C <- matrix(0, nrow = length(beta), ncol = length(beta_home))
+  for(j in 1:length(beta_home)) {
+    C[home_indx[j], j] <- 1
+    C[away_indx[j], j] <- -1
+  }
+
+  beta_int <- 0
+  if(home_advantage_predict) {
+    beta_int <- beta["Xint"]
+    C[grep("Xint", names(beta)), ] <- 1
+
+    if(beta_int < 0) {
+      "Estimated home field advantage used in predictions is {round(beta_int, 1)}." %>%
+        glue::glue() %>%
+        futile.logger::flogwarn()
+    }
+  }
+
+    spread <- round(beta_int + beta_home - beta_away, digits = 1) %>% as.numeric()
 
   # Esimate standard deviation in the model
   deg_f <- model$df.residual
-  std_dev <- sqrt(sum(model$residuals^2) / model$df.residual) %>% round(1)
+  sigma_hat <- sqrt(sum(model$residuals^2) / model$df.residual)
+  contrast_std <- sigma_hat*sqrt(diag(t(C) %*% MASS::ginv(t(X) %*% X) %*% C))
 
   #Put contrast vector c into confint to estimate HomeTm score - AwayTm score
   output <- data.frame(Home = HomeTm,
@@ -75,12 +99,13 @@ point_spread_ols <- function(
     as_tibble() %>%
     mutate(Winner = ifelse(spread >= 0, Home, Away),
            Loser = ifelse(spread >= 0, Away, Home),
-           lower = spread - stats::qt(1 - a/2, deg_f) * std_dev,
-           upper = spread + stats::qt(1 - a/2, deg_f) * std_dev,
-           std_dev = std_dev
+           lower = spread - stats::qt(1 - alpha/2, deg_f) * contrast_std,
+           upper = spread + stats::qt(1 - alpha/2, deg_f) * contrast_std,
+           home_adv = beta_int,
+           sigma_hat = sigma_hat
            )
 
-  output <- list(model = model, predictions = output, estimates = beta)
+  output <- list(predictions = output, estimates = beta, model = model)
 
   return(output)
 }

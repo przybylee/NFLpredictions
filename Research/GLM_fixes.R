@@ -26,10 +26,21 @@ point_spread_ols(data, "Cleveland Browns", "New York Jets", TRUE)
 point_spread_ols(data, "Cleveland Browns", "New York Jets", FALSE)
 original
 
-home <- c("Browns", "Cowboys", "Bills")
-away <- c("Jets", "Eagles", "Patriots")
+X <- data0$X %>% as.matrix()
+c_vec <- original$model$coefficients %>%
+  names()
 
-point_spread <- point_spread_ols(data, home, away, TRUE)
+c_vec <- ifelse(c_vec %in% c("Xint", "XCleveland Browns", "XNew York Jets"), 1, 0)
+c_vec[26] <- -1
+
+t(c_vec) %*% MASS::ginv(t(X) %*% X) %*% c_vec
+
+1/original$model$rank
+
+home <- c("Browns", "Cowboys", "Bills")
+away <- c("Jets", "Lions", "Patriots")
+
+point_spread <- point_spread_ols(data, home, away, TRUE)$predictions
 spread_probs <- spreadprob_normal(data, 0, aspread = NULL, home, away, TRUE)
 
 # Things to do

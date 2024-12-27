@@ -10,7 +10,7 @@ point_spread_ols(
   away,
   home_advantage_fit = TRUE,
   home_advantage_predict = TRUE,
-  a = 0.05
+  alpha = 0.05
 )
 }
 \arguments{
@@ -21,11 +21,13 @@ as produced by the XY_differences function}
 
 \item{away}{A vector of away team names, may use distinct substrings}
 
-\item{home_advantage_fit}{Logical, TRUE if we want to fit the OLS model with home field advantage}
+\item{home_advantage_fit}{Logical, indicates if we want to fit the OLS model
+with home field advantage}
 
-\item{home_advantage_predict}{Logical, TRUE if we want to estimate point spreads with home field advantage}
+\item{home_advantage_predict}{Logical, TRUE if we want to estimate point
+spreads with home field advantage}
 
-\item{a}{The level of the confidence interval}
+\item{alpha}{The level of the confidence interval}
 }
 \value{
 A data frame describing the estimated point spread and the limits of a
@@ -40,6 +42,10 @@ to predict on, meaning the first element of \code{home} plays the first element 
 \code{away}, and so on. The function uses the OLS method to estimate the point
 spread and the confidence interval assumes a normal distribution of
 point spread.
+
+The confidence interval on the spread assumes that all games are independent
+and the residuals are IID normal, and uses the derived t-distribution for
+estimated differences of the team effects in each game.
 }
 \examples{
 G <- regssn2021

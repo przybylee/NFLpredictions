@@ -23,8 +23,6 @@ scrape_games <- function(ssn = 2021, wk_start = 1, wk_stop){
                  "Cleveland Browns",
                  "Los Angeles Rams",
                  "Carolina Panthers",
-                 "Washington Redskins",
-                 "Washington Football Team",
                  "Philadelphia Eagles",
                  "Buffalo Bills",
                  "New York Jets",
@@ -52,7 +50,11 @@ scrape_games <- function(ssn = 2021, wk_start = 1, wk_stop){
                  "Denver Broncos",
                  "Oakland Raiders",
                  "St. Louis Rams",
-                 "San Diego Chargers")
+                 "San Diego Chargers",
+                 "Washington Redskins",
+                 "Washington Football Team",
+                 "Washington Commanders"
+                 )
 
   #total number of teams
   l <- nchar(nfl_teams)
