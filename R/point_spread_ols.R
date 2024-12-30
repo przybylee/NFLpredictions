@@ -24,6 +24,8 @@
 #' confidence level
 #' @export
 #'
+#' @import dplyr
+#'
 #' @examples
 #' G <- regssn2021
 #' List <- XY_differences(G)
@@ -92,15 +94,15 @@ point_spread_ols <- function(
   contrast_std <- sigma_hat*sqrt(diag(t(C) %*% MASS::ginv(t(X) %*% X) %*% C))
 
   #Put contrast vector c into confint to estimate HomeTm score - AwayTm score
-  output <- data.frame(Home = HomeTm,
-                       Away = AwayTm,
-                       spread = spread
+  output <- data.frame(home = HomeTm,
+                       away = AwayTm,
+                       est_spread = spread
                        ) %>%
     as_tibble() %>%
-    mutate(Winner = ifelse(spread >= 0, Home, Away),
-           Loser = ifelse(spread >= 0, Away, Home),
-           lower = spread - stats::qt(1 - alpha/2, deg_f) * contrast_std,
-           upper = spread + stats::qt(1 - alpha/2, deg_f) * contrast_std,
+    mutate(winner = ifelse(est_spread >= 0, home, away),
+           loser = ifelse(est_spread >= 0, away, home),
+           lower = est_spread - stats::qt(1 - alpha/2, deg_f) * contrast_std,
+           upper = est_spread + stats::qt(1 - alpha/2, deg_f) * contrast_std,
            home_adv = beta_int,
            sigma_hat = sigma_hat
            )
