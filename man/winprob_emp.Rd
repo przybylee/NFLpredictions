@@ -2,30 +2,45 @@
 % Please edit documentation in R/winprob.R
 \name{winprob_emp}
 \alias{winprob_emp}
-\title{Compute win probability using the empirical distribution}
+\title{Compute win probability using the empirical distribution of residuals}
 \usage{
-winprob_emp(design, home, away, home_effect = TRUE, verbose = TRUE)
+winprob_emp(
+  data,
+  home,
+  away,
+  home_advantage_fit = TRUE,
+  home_advantage_predict = TRUE,
+  home_win_prob = TRUE,
+  symmetric = FALSE
+)
 }
 \arguments{
-\item{design}{List of season data as produced by get_design(), contains
+\item{data}{List of season data as produced by get_design(), contains
 design matrix X, scores Y_diff, and a list of teams}
 
 \item{home}{Name of the home team, could be a substring}
 
 \item{away}{Name of the away team, could be a substring}
 
-\item{home_effect}{Logical, indicates if there is home field advantage}
+\item{home_advantage_fit}{Logical, TRUE if we want to fit the OLS model with home field advantage}
 
-\item{verbose}{Logical, indicates if we want output to read win probabilities}
+\item{home_advantage_predict}{Logical, TRUE if we want to estimate point spreads with home field advantage}
+
+\item{home_win_prob}{Logical, TRUE if we want to calculate the home team's win probability}
+
+\item{symmetric}{Logical, indicates if we should assume that the residuals
+are symmetric around 0}
+
+\item{h_spread}{Point spread for the home team}
+
+\item{a_spread}{Point spread for the away team}
 }
 \value{
 A data frame containing the teams and their win probabilities
 }
 \description{
-Compute win probability using the empirical distribution
+Compute win probability using the empirical distribution of residuals
 }
 \examples{
-G <- regssn2021
-design <- get_design(G)
-winprob_emp(design, "Patriots", "Bills")
+#NONE
 }

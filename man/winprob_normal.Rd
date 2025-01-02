@@ -10,7 +10,8 @@ winprob_normal(
   home,
   away,
   home_advantage_fit = TRUE,
-  home_advantage_predict = TRUE
+  home_advantage_predict = TRUE,
+  home_win_prob = TRUE
 )
 }
 \arguments{
@@ -25,9 +26,7 @@ design matrix X, scores Y_diff, and a list of teams}
 
 \item{home_advantage_predict}{Logical, TRUE if we want to estimate point spreads with home field advantage}
 
-\item{hspread}{Point spread for the home team}
-
-\item{aspread}{Point spread for the away team}
+\item{home_win_prob}{Logical, TRUE if we want to calculate the home team's win probability}
 }
 \value{
 A data frame containing the teams and their win probabilities

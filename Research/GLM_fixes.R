@@ -1,9 +1,9 @@
 library(devtools)
-library(dplyr)
+#library(dplyr)
 load_all()
 
 ?scrape_games
-df <- scrape_games(2023, 1, 17)
+df <- scrape_games(2024, 1, 16)
 df
 
 data <- get_design(df)
@@ -22,26 +22,61 @@ df %>%
 
 # In week 17, Cleveland beat the Jets by 17
 original <- point_spread_ols(data0, "Cleveland Browns", "New York Jets", TRUE)
-point_spread_ols(data, "Cleveland Browns", "New York Jets", TRUE)
-point_spread_ols(data, "Cleveland Browns", "New York Jets", FALSE)
+est <- point_spread_ols(data0, "Detroit Lions", "Minnesota Vikings", TRUE)
+spreadprob_normal(data0, 0, a_spread = NULL, "Detroit Lions", "Minnesota Vikings", TRUE)
+
+est$predictions
+
+point_spread_ols(data0, "Cleveland Browns", "New York Jets", FALSE)
 original
-
-X <- data0$X %>% as.matrix()
-c_vec <- original$model$coefficients %>%
-  names()
-
-c_vec <- ifelse(c_vec %in% c("Xint", "XCleveland Browns", "XNew York Jets"), 1, 0)
-c_vec[26] <- -1
-
-t(c_vec) %*% MASS::ginv(t(X) %*% X) %*% c_vec
-
-1/original$model$rank
 
 home <- c("Browns", "Cowboys", "Bills")
 away <- c("Jets", "Lions", "Patriots")
 
-point_spread <- point_spread_ols(data, home, away, TRUE)$predictions
-spread_probs <- spreadprob_normal(data, 0, aspread = NULL, home, away, TRUE)
+point_spread <- point_spread_ols(data, home, away, TRUE)
+point_spread$predictions
+
+h_spread <- c(15, 18, -10)
+spread_probs <- spreadprob_normal(data, h_spread, a_spread = NULL,
+                                  home, away,
+                                  TRUE
+                                  )
+spread_probs$probs
+
+
+spread_probs_emp <- spreadprob_emp(data, h_spread, a_spread = NULL,
+                                  home, away,
+                                  TRUE
+                                  )
+spread_probs_emp$probs
+
+residuals <- spread_probs_emp$model$residuals %>% head(-1)
+
+res_cdf <- ecdf(residuals)
+density <- density(residuals)
+plot(res_cdf)
+abline(v = 0, col = "red")
+abline(h = 0.5, col = "blue")
+
+plot(density)
+abline(h = 0, col = "red")
+abline(v = 0, col = "blue")
+
+
+mean(residuals)
+median(residuals)
+
+1- res_cdf(-8.5)
+
+emp_model <- spread_probs_emp$model
+hist(emp_model$residuals)
+spreadprob_emp(data,
+               h_spread = -14.8,
+               a_spread = 15,
+               "Green Bay Packers",
+               "New Orleans Saints",
+               TRUE
+               )
 
 # Things to do
 # 1. Fix the point spread function to handle multiple games at once #DONE

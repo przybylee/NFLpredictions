@@ -5,27 +5,36 @@
 \title{Compute win probability using the empirical distribution}
 \usage{
 spreadprob_emp(
-  design,
+  data,
+  h_spread = 0,
+  a_spread = NULL,
   home,
   away,
-  hspread = 0,
-  aspread = NULL,
-  home_effect = TRUE
+  home_advantage_fit = TRUE,
+  home_advantage_predict = TRUE,
+  symmetric = FALSE
 )
 }
 \arguments{
-\item{design}{List of season data as produced by get_design(), contains
+\item{data}{List of season data as produced by get_design(), contains
 design matrix X, scores Y_diff, and a list of teams}
+
+\item{h_spread}{The listed point spread for the home team}
+
+\item{a_spread}{The listed point spread for the away team}
 
 \item{home}{Name of the home team, could be a substring}
 
 \item{away}{Name of the away team, could be a substring}
 
-\item{hspread}{The listed point spread for the home team}
+\item{home_advantage_fit}{Logical, indicates if the model should include home
+field advantage}
 
-\item{aspread}{The listed point spread for the away team}
+\item{home_advantage_predict}{Logical, indicates if the model should
+include use home field advantage when predicting point spreads}
 
-\item{home_effect}{Logical, indicates if there is home field advantage}
+\item{symmetric}{Logical, indicates if we should assume that the residuals
+are symmetric about zero}
 }
 \value{
 A data frame containing the teams and their probabilities of beating
@@ -33,6 +42,34 @@ the spread
 }
 \description{
 Compute win probability using the empirical distribution
+}
+\details{
+The values for \code{h_spread} and \code{a_spread} should follow the conventions
+of American sports books.  Beating the spread means that that a teams score, plus their
+spread, is greater than their opponents score.  A negative spread means that we
+are adding a handicap for a likely superior team.  A positive spread means
+the team might be inferior, but they get extra help to beat the spread.  For
+example, if \code{h_spread = 8}, we are estimating the
+probability that the home team will lose by less than 8 points.
+
+Clearly, we could estimate win probability by using \code{h_spread = 0}.
+
+This function uses the empirical distribution of the residuals of our OLS
+model follow.  Thus, if \eqn{y_j} is the home team's score minus the away team's
+score, and \eqn{\hat{y}_j} is the predicted value of \eqn{y_j}, then the
+residual is
+\deqn{\varepsilon_j = y_j - \hat{y}_j.}
+When a sufficient number of games are used to fit the model, we can estimate
+the probability of the home team beating a spread \eqn{h_j} as
+\deqn{
+P(y_j + h_j > 0) = P(y_j > -h_j)
+                 = P(\varepsilon_j > -h_j - \hat{y}_j)
+                 = 1 - F(-h_j - \hat{y}_j)
+}
+where \eqn{F} is the empirical CDF of the residuals.  When
+\code{symmetric = TRUE}, we assume that the residuals are symmetric about zero
+and we use both the positive and negative residuals to define the empirical
+CDF.
 }
 \examples{
 design <- get_design(regssn2021)

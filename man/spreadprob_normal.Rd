@@ -7,8 +7,8 @@ errors}
 \usage{
 spreadprob_normal(
   data,
-  hspread = 0,
-  aspread = NULL,
+  h_spread = 0,
+  a_spread = NULL,
   home,
   away,
   home_advantage_fit = TRUE,
@@ -19,9 +19,9 @@ spreadprob_normal(
 \item{data}{List of season data as produced by get_design(), contains
 design matrix X, scores Y_diff, and a list of teams}
 
-\item{hspread}{Point spread for the home team}
+\item{h_spread}{Point spread for the home team}
 
-\item{aspread}{Point spread for the away team}
+\item{a_spread}{Point spread for the away team}
 
 \item{home}{Name of the home team, could be a substring}
 
@@ -37,6 +37,26 @@ A data frame containing the teams and their win probabilities
 \description{
 Calculate the probability of each team beating the spread assuming normal
 errors
+}
+\details{
+The values for \code{h_spread} and \code{a_spread} should follow the conventions
+of American sports books.  Beating the spread means that that a teams score, plus their
+spread, is greater than their opponents score.  A negative spread means that we
+are adding a handicap for a likely superior team.  A positive spread means
+the team might be inferior, but they get extra help to beat the spread.  For
+example, if \code{h_spread = 8}, we are estimating the
+probability that the home team will lose by less than 8 points.
+
+Clearly, we could estimate win probability by using \code{h_spread = 0}.
+
+This function assumes that the residuals of our OLS model follow a normal
+distribution.  Thus, if \eqn{y_j} is the home team's score minus the away team's
+score, and \eqn{\hat{y}_j} is the predicted value of \eqn{y_j}, then the
+probabity of the home team beating a spread \eqn{h_j} is estimated as
+\deqn{P(y_j + h_j > 0) = P(y_j > -h_j)}
+where \eqn{y_j \sim N(\hat{y}_j, \hat{\sigma}^2)}.  A small adjustment to this
+formula can be made so that we can use the left tail to estimate the probability
+of the away team beating the spread.
 }
 \examples{
 #None
