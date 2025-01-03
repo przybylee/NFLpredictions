@@ -113,7 +113,7 @@ summary(model)
 # 1. Fix the point spread function to handle multiple games at once #DONE
 # 2. Fix OLS win prob function to use new point spread ols #Done
 # 3. Fix residual win prob function to use new point spread ols #Done
-# 4. Add a GLM function to estimate win probabilities
+# 4. Add a GLM function to estimate win probabilities #Done
 
 
 # this run leaves one of the estimates NA because it is rank deficient

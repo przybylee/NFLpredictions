@@ -92,3 +92,27 @@ team_detect <- function(design, string, ignore.case = TRUE){
   matches <- teams[match_indx,]
   return(matches)
 }
+
+#' Pivot games data into a wider format
+#'
+#' @param games A data frame with columns for Team, Score, Year, and Week where
+#' each game is represented by two rows, one for each team
+#'
+#' @returns A data frame with columns for game_id, home_team, home_score,
+#' away_team, and away_score for each game
+#' @export
+#'
+#' @examples
+#' games <- regssn2021
+#' pivot_games_wide(games)
+pivot_games_wide <- function(games) {
+  n_games <- nrow(games)/2
+
+  games %>%
+    rename(team = Team, score = Score, year = Year, week = Week) %>%
+    mutate(game_id = rep(1:n_games, each = 2),
+           home_away = rep(c("home", "away"), n_games)
+    ) %>%
+    tidyr::pivot_wider(names_from = home_away, values_from = c("team", "score"))
+
+}
