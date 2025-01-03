@@ -178,9 +178,9 @@ spreadprob_emp <- function(
     residuals <- c(residuals, -residuals)
   }
 
-  # empirical density function of residuals
-  res_density <- density(residuals)
-  plot(res_density)
+  # # empirical density function of residuals
+  # res_density <- density(residuals)
+  # plot(res_density)
 
   # empirical cdf of residuals
   res_cdf <- ecdf(residuals)

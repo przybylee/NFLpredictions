@@ -78,10 +78,41 @@ spreadprob_emp(data,
                TRUE
                )
 
+
+# Develop logistic win prob function
+home
+away
+
+spread_prob_normal <- spreadprob_normal(data, 0, NULL, home, away, TRUE)
+wp_norm <- winprob_normal(data, home, away, TRUE)
+wp_emp <- winprob_emp(data, home, away, TRUE)
+
+spread_prob_normal$probs
+wp_norm$probs
+wp_emp$probs
+
+# Use data, home , away, home_advantage_fit and predict, home_win_prob
+names(data)
+View(data$X)
+
+X <- data$X %>%
+  rbind(c(0, rep(1, ncol(data$X) - 1)))
+
+Y <- c(data$Y_binary, 0)
+
+model <- glm(Y ~ 0 + X, family = binomial(link = "logit"))
+
+beta <- coef(model)
+
+logistic(beta[1])
+
+logistic(beta[1] + beta["XBuffalo Bills"] - beta["XNew England Patriots"])
+summary(model)
+
 # Things to do
 # 1. Fix the point spread function to handle multiple games at once #DONE
 # 2. Fix OLS win prob function to use new point spread ols #Done
-# 3. Fix residual win prob function to use new point spread ols
+# 3. Fix residual win prob function to use new point spread ols #Done
 # 4. Add a GLM function to estimate win probabilities
 
 

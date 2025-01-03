@@ -13,6 +13,23 @@ american_to_odds <- function(line){
   return(odds)
 }
 
+#' Compute the logistic
+#'
+#' @param x A real number
+#'
+#' @returns A probability
+#'
+#' @description
+#' The logistic function is given by
+#' \deqn{\text{logistic}(x) = \frac{1}{1 + \exp(-x)}}
+#'
+#' @export
+#'
+#' @examples logistic(0)
+logistic <- function(x){
+  return(1/(1+exp(-x)))
+}
+
 #' Compute the logit
 #'
 #' @param p A probability between 0 and 1
