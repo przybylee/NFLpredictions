@@ -133,6 +133,8 @@ winprob_logistic <- function(
 ) {
   X <- data$X %>% rbind(c(0, rep(1, ncol(data$X) - 1)))
 
+  teams <- data$teams$name
+
   if(!home_advantage_fit){
     X <- X[, 2:ncol(X)]
     home_advantage_predict <- FALSE
@@ -165,7 +167,7 @@ winprob_logistic <- function(
     if(beta_int < 0) {
       "Estimated home field advantage used in predictions is {round(beta_int, 1)} log odds." %>%
         glue::glue() %>%
-        futile.logger::flogwarn()
+        futile.logger::flog.warn()
     }
   }
 
@@ -173,7 +175,7 @@ winprob_logistic <- function(
   win_prob <- logistic(beta_int + beta_home - beta_away)
   if(!home_win_prob) win_prob <- 1 - win_prob
 
-  predictions <- data.frame(home = HomeTm,
+  probs <- data.frame(home = HomeTm,
                             away = AwayTm,
                             prob_team = "home",
                             win_prob = win_prob
@@ -181,9 +183,10 @@ winprob_logistic <- function(
     mutate(winner = ifelse(win_prob > 0.5, home, away),
            loser = ifelse(win_prob > 0.5, away, home),
            home_advanage = logistic(beta_int)
-    )
+    ) %>%
+    as_tibble()
 
-  output <- list(predictions = predictions, estimates = beta, model = model)
+  output <- list(estimates = beta, model = model, probs = probs)
 
   return(output)
 }

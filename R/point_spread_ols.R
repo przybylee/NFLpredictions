@@ -82,7 +82,7 @@ point_spread_ols <- function(
     if(beta_int < 0) {
       "Estimated home field advantage used in predictions is {round(beta_int, 1)}." %>%
         glue::glue() %>%
-        futile.logger::flogwarn()
+        futile.logger::flog.warn()
     }
   }
 

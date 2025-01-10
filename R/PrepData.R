@@ -111,7 +111,7 @@ pivot_games_wide <- function(games) {
   games %>%
     rename(team = Team, score = Score, year = Year, week = Week) %>%
     mutate(game_id = rep(1:n_games, each = 2),
-           home_away = rep(c("home", "away"), n_games)
+           home_away = rep(c("away", "home"), n_games)
     ) %>%
     tidyr::pivot_wider(names_from = home_away, values_from = c("team", "score"))
 
