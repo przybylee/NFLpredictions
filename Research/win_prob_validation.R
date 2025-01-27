@@ -2,7 +2,7 @@ devtools::load_all()
 
 # Perform validation by running the model week to week and checking the results
 
-season <- 2024
+season <- 2023
 
 # Get the data for the season
 games0 <- scrape_games(season, 1, 17)

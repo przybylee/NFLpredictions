@@ -34,7 +34,7 @@ drop_incomplete_games <- function(data, game_ids = FALSE){
 #' @param data A data frame with columns for Team, Score, Year, and Week
 #' produced by scrape_games.  Last 3 columns must be numeric.
 #'
-#' @return A list of 9 components, including 2 design matrices (X, X_sum),
+#' @return A list of 7 components, including 2 design matrices (X, X_sum),
 #' and 3 vectors of observations of season data (Y_diff, Y_sum, Y_binary), the
 #' list of teams, original dataframe of scores, and date range of games.
 #' @export
@@ -47,7 +47,7 @@ get_design <- function(data){
   M <- length(unique(data$Team))
   X <- matrix(data = 0, nrow = N/2, ncol = M+1)
   teams <- sort(unique(data$Team))
-  X <- matrix(data = 0, nrow = N/2, ncol = M+1)
+
   colnames(X) <- c("home", teams)
   Y_diff <- rep(0, N/2)
   Y_sum <- rep(0, N/2)
@@ -71,6 +71,62 @@ get_design <- function(data){
   return(result)
 }
 
+#' Obtain a design from a wide-fromat dataframe of games
+#'
+#' @param data Data in a a wide format with columns for home team, home score,
+#' away team, away score, season, week, game type, location, result, and total
+#'
+#' @details This function is intended to help when games are scraped using
+#' the R package `nflreadr`.  The data is then pivoted into a wide format and
+#' also includes a column "location" which incidates when the game is played at
+#' a Home or Neutral site.
+#'
+#' @returns A list with 7 components:  2 design matrices (X, X_sum), and 3 vectors
+#' of observations of season data (Y_diff, Y_sum, Y_binary), the list of teams,
+#' and original dataframe of scores.
+#' @export
+#'
+#' @examples
+games_wide_to_design <- function(data){
+
+  vars <- c("away_team", "away_score", "home_team", "home_score",
+            "season", "week", "game_type",
+            "location", "result", "total"
+            )
+
+  games <- data %>%
+    select(all_of(vars)) %>%
+    tidyr::drop_na()
+
+  N <- length(games$result)
+  M <- length(unique(c(games$home_team, games$away_team)))
+
+  X <- matrix(data = 0, nrow = N, ncol = M+1)
+  teams <- sort(unique(c(games$home_team, games$away_team)))
+
+  colnames(X) <- c("home", teams)
+
+  Y_diff <- games$home_score - games$away_score
+  Y_sum <- games$home_score + games$away_score
+  Y_binary <- ifelse(Y_diff >= 0, 1, 0)
+
+  for(n in 1:N){
+    X[n,"home"] <- ifelse(games$location[n] == "home", 1, 0)
+    X[n, games$home_team[n]] <- -1
+    X[n, games$away_team[n]] <- 1
+  }
+
+  X_sum <- abs(X)
+  colnames(X)[1] <- "int"
+  team_ids <- data.frame(tm_id = 1:length(teams), name = teams)
+
+  result <- list(X = X, X_sum = X_sum,
+                 Y_diff = Y_diff, Y_sum = Y_sum, Y_binary = Y_binary,
+                 teams = team_ids, games = games
+  )
+
+  return(result)
+}
 
 #' Search for teams in the design
 #'

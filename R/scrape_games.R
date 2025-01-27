@@ -67,7 +67,7 @@ scrape_games <- function(ssn = 2021, wk_start = 1, wk_stop){
       #manipulate base string to get a specific week in a specific season
       date <- paste0("years/", year, "/week_", week, ".htm")
 
-      url <- paste0(nfl_base, date)
+      url <- paste0(nfl_base, date) %>% curl::curl()
 
       #execute string scrape
       game <- rvest::read_html(url) %>%
