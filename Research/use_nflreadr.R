@@ -22,7 +22,6 @@ design$teams
 home <- "Chiefs"
 away <- "Eagles"
 
-
 ?winprob_normal
 point_spread_ols(data = design, home, away, home_advantage_predict = FALSE)
 

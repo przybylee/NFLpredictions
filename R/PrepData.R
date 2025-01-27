@@ -111,9 +111,9 @@ games_wide_to_design <- function(data){
   Y_binary <- ifelse(Y_diff >= 0, 1, 0)
 
   for(n in 1:N){
-    X[n,"home"] <- ifelse(games$location[n] == "home", 1, 0)
-    X[n, games$home_team[n]] <- -1
-    X[n, games$away_team[n]] <- 1
+    X[n,"home"] <- ifelse(games$location[n] == "Home", 1, 0)
+    X[n, games$home_team[n]] <- 1
+    X[n, games$away_team[n]] <- -1
   }
 
   X_sum <- abs(X)
