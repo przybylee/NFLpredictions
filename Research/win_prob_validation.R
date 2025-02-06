@@ -3,27 +3,27 @@ library(nflreadr)
 
 # Perform validation by running the model week to week and checking the results
 
-season <- 2023
+# season <- 2023
+#
+# # # Get the data for the season using orignal game scraping function
+# # games0 <- scrape_games(season, 1, 19)
+#
+# # Get games and team names using nflreadr
+# games0 <- nflreadr::load_schedules(season)
+# teams <- nflreadr::load_teams(season) %>%
+#   select(team_abbr, team_name)
+#
+# # Join team names
+# games <- games0 %>%
+#   rename(home_team_abbr = "home_team", away_team_abbr = "away_team") %>%
+#   left_join(teams, by = c("home_team_abbr" = "team_abbr")) %>%
+#   rename(home_team = team_name) %>%
+#   left_join(teams, by = c("away_team_abbr" = "team_abbr")) %>%
+#   rename(away_team = team_name)
+#
+# data <- games_wide_to_design(games)
 
-# # Get the data for the season using orignal game scraping function
-# games0 <- scrape_games(season, 1, 19)
-
-# Get games and team names using nflreadr
-games0 <- nflreadr::load_schedules(season)
-teams <- nflreadr::load_teams(season) %>%
-  select(team_abbr, team_name)
-
-# Join team names
-games <- games0 %>%
-  rename(home_team_abbr = "home_team", away_team_abbr = "away_team") %>%
-  left_join(teams, by = c("home_team_abbr" = "team_abbr")) %>%
-  rename(home_team = team_name) %>%
-  left_join(teams, by = c("away_team_abbr" = "team_abbr")) %>%
-  rename(away_team = team_name)
-
-data <- games_wide_to_design(games)
-
-n_weeks <- max(games$week)
+# n_weeks <- max(games$week)
 
 run_week <- function(wk, gms) {
   # # for development
@@ -149,6 +149,12 @@ run_all_seasons <- function(start, end) {
 }
 
 
-# Analyze results ---------------------------------------------------------
+
+# run seasons and save results --------------------------------------------
+
+results <- run_all_seasons(1999 , 2024)
+
+# save results
+saveRDS(results, "Research/win_prob_validation2025-02-05.rds")
 
 
