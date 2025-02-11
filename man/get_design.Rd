@@ -11,7 +11,7 @@ get_design(data)
 produced by scrape_games.  Last 3 columns must be numeric.}
 }
 \value{
-A list of 9 components, including 2 design matrices (X, X_sum),
+A list of 7 components, including 2 design matrices (X, X_sum),
 and 3 vectors of observations of season data (Y_diff, Y_sum, Y_binary), the
 list of teams, original dataframe of scores, and date range of games.
 }

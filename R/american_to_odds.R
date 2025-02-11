@@ -8,9 +8,22 @@
 #' @examples
 #' american_to_odds(-110)
 american_to_odds <- function(line){
-  if(line > 0){odds <- abs(line)/100}
-  else{odds <- 100/abs(line)}
+  odds <- ifelse(line > 0, abs(line)/100, 100/abs(line))
   return(odds)
+}
+
+#' Convert American betting line to probability
+#'
+#' @param line integer indicating the team's betting line
+#'
+#' @returns Numeric vector of probabilities derived from home and away lines
+#' @export
+#'
+#' @examples american_to_prob(-110, 100, home = TRUE)
+american_to_prob <- function(line = 100) {
+  odds <- american_to_odds(line)
+  prob <- odds / (1 + odds)
+  prob
 }
 
 #' Compute the logistic
