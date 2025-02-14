@@ -1,4 +1,13 @@
 # Analyze predictions from the 5 models in validation data
+# Questions:
+# 1. How do the models compare in terms of RMSE, accuracy, and log loss?
+# 2. How do the distributions of predictions of the models compare (box plots)?
+# 3. Are there any trends in residuals that follow these factors?:
+#    - rest
+#    - gameday or weekday
+#    - divisional or non-divisional, times teams played each other
+#    - roof, surface, teemp, wind
+#    - logistic vs normal residuals
 
 devtools::load_all()
 library(ggplot2)
@@ -14,6 +23,9 @@ val_data %>%
          spread_line, result, p_normal1, sp_ols1, p_emp, p_normal2,
          sp_ols2, p_logistic, p_logistic2
   )
+
+
+# Q1 Compare performance metrics ------------------------------------------
 
 # small fudge factor to avoid division by zero
 p_fudge <- 1E-10
@@ -107,11 +119,14 @@ weekly %>%
     geom_smooth(method = "loess", mapping = aes(weight = n)) +
     labs(x = "Model", y = "Log Loss", title = "Log Loss by Model")
 
-# Questions:
-# 1. How do the models compare in terms of RMSE, accuracy, and log loss?
-# 2. How do the distributions of predictions of the models compare (box plots)?
-# 3. Are there any trends in residuals that follow these factors?:
-#    - rest
-#    - gameday or weekday
-#    - roof, surface, teemp, wind
-#    - logistic vs normal residuals
+# compare distributions of the predictions
+val_data %>%
+  tidyr::pivot_longer(
+    cols = c(starts_with("sp_"), spread_line, result),
+    names_to = "model",
+    values_to = "prediction"
+  ) %>%
+  ggplot(aes(x = prediction, y = model, fill = model)) +
+    geom_violin(alpha = 0.5, draw_quantiles = c(0.25, 0.5, 0.75)) +
+    xlim(-50, 50) +
+    labs(x = "Point Differential", y = "Model", title = "Spread Distributions")
