@@ -45,6 +45,7 @@ val_performance <- val_data %>%
     res_spread = result - spread_line,
     p_moneyline = american_to_prob(home_moneyline)/
         (american_to_prob(home_moneyline) + american_to_prob(away_moneyline)),
+    p_moneyline_home = american_to_prob(home_moneyline),
     binary = as.numeric(result > 0),
     log_loss_normal1 = -binary*log(p_normal1) - (1-binary)*log(1-p_normal1),
     log_loss_normal2 = -binary*log(p_normal2) - (1-binary)*log(1-p_normal2),
@@ -119,7 +120,11 @@ weekly %>%
     geom_smooth(method = "loess", mapping = aes(weight = n)) +
     labs(x = "Model", y = "Log Loss", title = "Log Loss by Model")
 
-# compare distributions of the predictions
+
+
+# compare distributions of the predictions -------------------------------
+
+# Spread models
 val_data %>%
   tidyr::pivot_longer(
     cols = c(starts_with("sp_"), spread_line, result),
@@ -130,3 +135,16 @@ val_data %>%
     geom_violin(alpha = 0.5, draw_quantiles = c(0.25, 0.5, 0.75)) +
     xlim(-50, 50) +
     labs(x = "Point Differential", y = "Model", title = "Spread Distributions")
+
+# Win prob models
+val_performance %>%
+  filter(week > 10) %>%
+  tidyr::pivot_longer(
+    cols = c(starts_with("p_")),
+    names_to = "model",
+    values_to = "prediction"
+  ) %>%
+  ggplot(aes(x = prediction, y = model, fill = model)) +
+    geom_violin(alpha = 0.5, draw_quantiles = c(0.25, 0.5, 0.75)) +
+    xlim(0, 1) +
+    labs(x = "Win Probability", y = "Model", title = "Win Probability Distributions")
