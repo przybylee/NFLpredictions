@@ -118,7 +118,7 @@ weekly %>%
   ggplot(aes(x = week, y = log_loss, color = model)) +
     geom_point() +
     geom_smooth(method = "loess", mapping = aes(weight = n)) +
-    labs(x = "Model", y = "Log Loss", title = "Log Loss by Model")
+    labs(x = "Week", y = "Log Loss", title = "Log Loss by Model")
 
 
 
