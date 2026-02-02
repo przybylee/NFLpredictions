@@ -3,10 +3,10 @@
 library(nflreadr)
 devtools::load_all()
 
-season <- 2023
+season <- 2025
 
 # compare original scrape results to nflreadr results
-games0 <- scrape_games(season, 1, 19)
+games0 <- scrape_games(season, 1, 17)
 games0_wide <- pivot_games_wide(games0)
 
 games1 <- nflreadr::load_schedules(season)

@@ -146,12 +146,14 @@ winprob_logistic <- function(
 
   beta <- coef(model)
 
-  home_indx <- purrr::map_int(home,
-                              ~which(grepl(.x, teams, ignore.case = TRUE))[1]
+  home_indx <- purrr::map_int(
+    home,
+    ~which(grepl(.x, teams, ignore.case = TRUE))[1]
   )
 
-  away_indx <- purrr::map_int(away,
-                              ~which(grepl(.x, teams, ignore.case = TRUE))[1]
+  away_indx <- purrr::map_int(
+    away,
+    ~which(grepl(.x, teams, ignore.case = TRUE))[1]
   )
 
   HomeTm <- teams[home_indx]
